@@ -15,3 +15,15 @@ Lehrer können auf einer Plattform Hausaufgaben einmelden, die ab Freigabe durch
 5. Für jede Aufgabe gibt es ein Antwortfeld + eine Möglichkeit zusätzliche Dateien hochzuladen
 6. Der Lehrer kann alle eingereichten Aufgaben benoten und den Schülern zusätzliche Informationen mitteilen
 7. Die Schüler können sich benotete Aufgaben anschauen und die Informationen dazu lesen
+
+## Entwicklung
+
+### Docker
+Das vollständige docker-compose setup erstellt ein node image und verwendet
+ein fertiges mongodb image.
+Es ist nicht notwendig das node image für die Entwicklung zu bauen.
+
+Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
+* `docker-compose up mongo` - Startet eine mongodb (auf port 27017).
+* (Falls nicht bereits ausgeführt) `npm install` - Installiert die Abhängigkeiten.
+* `node app.js 8080 localhost 27017` - Startet die Applikation.

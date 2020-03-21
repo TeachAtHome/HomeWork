@@ -1,4 +1,27 @@
 class GroupEndpoints {
+    getGroupStudents = async (req, res, next) => {
+        try {
+            const groupName = req.params.name
+            const group = await req.services.groupService.getGroup(groupName);
+
+            if (!group) {
+                res.sendStatus(404)
+            }
+
+            const name = group.name;
+            var students = [];
+            for (var i = 0; i < group.studentIds.length; i++) {
+                const student = await req.services.personService.getPerson(group.studentIds[i]);
+                students.push(student);
+            }
+
+            res.json({name: name, students: students});
+        } catch (err) {
+            // something could fail unexpectedly...
+            // at some point the middleware chain should handle errors
+            next(err)
+        }
+    }
     getGroup = async (req, res, next) => {
         try {
             const groupName = req.params.name
@@ -24,6 +47,7 @@ class GroupEndpoints {
                 res.sendStatus(404)
             }
         } catch (err) {
+            console.log(err);
             // something could fail unexpectedly...
             // at some point the middleware chain should handle errors
             next(err)

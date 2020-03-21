@@ -31,9 +31,12 @@ class PersonEndpoints {
     }
     postStudent = async (req, res, next) => {
         try {
-            var personId = req.body.id;
+            const personId = req.body.id;
+            const personName = req.body.name;
+            const personEmail = req.body.email;
+
             try {
-                await req.services.personService.addPerson(personId);
+                await req.services.personService.addPerson(personId, personName, personEmail);
                 res.sendStatus(201);
             } catch (error) {
                 res.send(error).status(400);

@@ -40,7 +40,7 @@ werden (der Wert ist egal).
 
 ### Beispiel Daten
 
-Das bash script `fill_example_data.sh` senden über die REST API und curl erste
+Das bash script `fill_example_data.sh` sendet über die REST API und curl erste
 Beispieldaten in das Backend.
 
 ### React Frontend

@@ -1,9 +1,11 @@
 class Person {
-    constructor(id) {
-        this.id = id;
+    constructor(firstname, lastname, email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
     }
     toString() {
-        return "[PERSON][id]=" + this.id
+        return "[PERSON][id]=" + this.firstname + this.lastname + this.email
     }
 }
 

@@ -15,10 +15,10 @@ class PersonService {
         return await this.personRepository.getAll();
     }
 
-    async addPerson(id) {
-        console.log('PersonService|addPerson: ' + id);
-        if (await this.getPerson(id) == null) {
-            const person = new Person(id);
+    async addPerson(firstname, lastname, email) {
+        const persons = await this.personRepository.findPerson(firstname, lastname, email);
+        if (persons == null) {
+            const person = new Person(firstname, lastname, email);
             console.log('PersonService|addPerson|Person: ' + person.toString());
             console.log('PersonService|addPerson|callRepository');
             return await this.personRepository.addPerson(person);

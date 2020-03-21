@@ -8,7 +8,21 @@ class PersonRepository {
     async getPersonById(id) {
         console.log('PersonRepository|getPersonById' + id);
 
-        const result = await this.db.getCollectionEntries(this.collectionName, {id: id});
+        const result = await this.db.getCollectionEntries(this.collectionName, { _id: id });
+        if (result.length > 1) {
+            console.log("Warning: Found multiple persons with the same id! " + id);
+        }
+        if (result.length >= 1) {
+            return Promise.resolve(result[0]);
+        } else {
+            return null;
+        }
+    }
+
+    async findPerson(firstname, lastname, email) {
+        console.log('PersonRepository|findPerson');
+
+        const result = await this.db.getCollectionEntries(this.collectionName, { firstname: firstname, lastname: lastname, email: email });
         if (result.length > 1) {
             console.log("Warning: Found multiple persons with the same id! " + id);
         }
@@ -31,12 +45,12 @@ class PersonRepository {
 
     async deletePerson(person) {
         console.log('PersonRepository|deletePerson' + JSON.stringify(person));
-        await this.db.deleteCollectionEntry(this.collectionName, {id: person.id}, true);
+        await this.db.deleteCollectionEntry(this.collectionName, { id: person.id }, true);
     }
 
     async updatePerson(person) {
         console.log('PersonRepository|updatePerson' + JSON.stringify(person));
-        await this.db.updateCollectionEntry(this.collectionName, {id: person.id}, person);
+        await this.db.updateCollectionEntry(this.collectionName, { id: person.id }, person);
     }
 }
 

@@ -1,0 +1,37 @@
+#Container {
+  position: relative;
+  width: 80%;
+  height: 120px;
+  overflow: visible;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-top: 32px;
+  margin-bottom: 96px;
+}
+
+#Titel {
+  position: relative;
+  overflow: visible;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 60px;
+  color: rgba(0, 0, 0, 0.871);
+  letter-spacing: -0.08800000190734864px;
+}
+
+#Year {
+  position: relative;
+  margin-top: 16px;
+  white-space: nowrap;
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.871);
+  letter-spacing: 0.12899999618530272px;
+}

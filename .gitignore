@@ -1,3 +1,4 @@
 \node_modules
 key.json
 mongo_mock.js
+.vscode/

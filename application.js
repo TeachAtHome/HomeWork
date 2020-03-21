@@ -27,6 +27,12 @@ class Application {
         const pReository = new PersonRepository(db);
         const pService = new PersonService(pReository)
 
+        // Group service
+        const GroupService = require('./group/service.group');
+        const GroupRepository = require('./group/repository.group');
+        const gRepository = new GroupRepository(db);
+        const gService = new GroupService(gRepository)
+
         // Storage service
         const StorageService = require('./storage/service.storage');
         const sService = new StorageService();
@@ -34,6 +40,7 @@ class Application {
         // Collect injectable services
         const requestServices = {
             personService: pService,
+            groupService: gService,
             storageService: sService
         };
 

@@ -79,6 +79,7 @@ class ExpressServer {
         // Group
         const groupRoutes = require('./group/route.group');
         server.get('/api/group/:name', groupRoutes.getGroup);
+        server.get('/api/group/:name/students', groupRoutes.getGroupStudents);
         server.get('/api/group', groupRoutes.getAllGroups);
         server.post('/api/group', groupRoutes.postGroup);
 

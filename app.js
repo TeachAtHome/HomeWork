@@ -7,7 +7,7 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,7 +19,7 @@ app.use(fileUpload({
 }));
 
 const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+app.use(cookieParser());
 
 /* 
   Setup Service Injection
@@ -29,7 +29,7 @@ app.use(cookieParser())
 const PersonService = require('./person/service.person');
 const PersonRepository = require('./person/repository.person');
 const pReository = new PersonRepository();
-const pService = new PersonService(pReository)
+const pService = new PersonService(pReository);
 
 // Storage service
 const StorageService = require('./storage/service.storage');
@@ -44,8 +44,8 @@ var services = {
 // Inject Services
 const addServicesToRequest = require('./middleware/service.dependencies.middleware');
 const setupServiceDependencies = (server) => {
-  const servicesMiddleware = addServicesToRequest(services)
-  server.use(servicesMiddleware)
+  const servicesMiddleware = addServicesToRequest(services);
+  server.use(servicesMiddleware);
 }
 setupServiceDependencies(app);
 

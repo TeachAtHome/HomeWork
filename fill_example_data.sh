@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 api_url="http://localhost:8080/api"
 
@@ -19,8 +19,8 @@ function get {
 }
 
 function addStudent {
-    id="$1";shift
-    post "{ \"id\": \"$id\" }" 'student'
+    data="$1";shift
+    post "$data" 'student'
 }
 
 function addGroup {
@@ -31,10 +31,11 @@ function addGroup {
 
 }
 
-students=(s1 s2 s3 s4 s5)
-for student in "${students[@]}"; do
-  addStudent "$student"
-done
+addStudent '{"id": "s1", "name": "MC Hammer", "email": "hammer@time.com"}'
+addStudent '{"id": "s2", "name": "Sledge Hammer", "email": "hammering@time.com"}'
+addStudent '{"id": "s3", "name": "John Travolta", "email": "johnny@hollywood.com"}'
+addStudent '{"id": "s4", "name": "Mr. T", "email": "t@team.com"}'
+addStudent '{"id": "s5", "name": "Dr. No", "email": "dr@bond.com"}'
 
 echo "show student state"
 get 'student'

@@ -5,24 +5,24 @@ class PersonService {
         this.personRepository = personRepository
     }
 
-    getPerson(id) {
-        console.log('PersonService|getPerson' + id);
-        return this.personRepository.getPersonById(id);
+    async getPerson(id) {
+        console.log('PersonService|getPerson: ' + id);
+        return await this.personRepository.getPersonById(id);
     }
 
-    listAllPersons() {
+    async listAllPersons() {
         console.log('PersonService|listAllPersons');
-        return this.personRepository.getAll();
+        return await this.personRepository.getAll();
     }
 
-    addPerson(id) {
-        console.log('PersonService|addPerson' + id);
-        if (!this.getPerson(id)) {
+    async addPerson(id) {
+        console.log('PersonService|addPerson: ' + id);
+        if (await this.getPerson(id) == null) {
             const person = new Person(id);
-            console.log('PersonService|addPerson|Person' + person.toString());
+            console.log('PersonService|addPerson|Person: ' + person.toString());
             console.log('PersonService|addPerson|callRepository');
-            return this.personRepository.addPerson(person);
-        }
+            return await this.personRepository.addPerson(person);
+        } 
         console.log('PersonService|addPerson|throwError');
         throw "Person is already existing"
     }

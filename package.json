@@ -16,7 +16,11 @@
     "url": "https://github.com/TeachAtHome/TeachAtHome/issues"
   },
   "homepage": "https://github.com/TeachAtHome/TeachAtHome#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@google-cloud/storage": "^4.6.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express-fileupload": "^1.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.5.5"
   }

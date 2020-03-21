@@ -75,30 +75,21 @@ var dbHost = process.argv[3];
 var dbPort = parseInt(process.argv[4]);
 var dbName = 'homework'
 
-var MongoClient = require('mongodb').MongoClient;
-var client = new MongoClient(`mongodb://${dbHost}:${dbPort}`, { useUnifiedTopology: true });
+const { MongoService } = require('./storage/mongoService');
 
-client.connect(function (err, c) {
-  if (err) throw err;
+async function testMongo() {
+  const mongo =  new MongoService(dbHost, dbPort, dbName);
+  await mongo.open();
+  const collectionName = 'submissions';
+  const idOfInsertion = await mongo.addObject({testKey1: 'testVal1', testKey2: 'testVal2'}, collectionName);
+  const result = await mongo.getCollectionEntries(collectionName, { _id: idOfInsertion });
+  console.log(result);
+  const result2 = await mongo.getAllCollectionEntries(collectionName);
+  console.log(result2);
+  await mongo.close();
+}
 
-  objectToInsert = { arg1: 'val1', arg2: 'val2' };
-  collectionName = 'submissions';
-
-  var db = c.db(dbName);
-  // Insert entry into mongo
-  db.collection(collectionName).insertOne(objectToInsert, function (err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-  });
-
-  // Find mongo entry
-  db.collection(collectionName).find().toArray(function (err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
-
-});
-
+testMongo();
 app.listen(appPort, appHost, function () {
   console.log('Example app listening on port: ' + appPort);
 });

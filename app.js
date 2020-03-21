@@ -3,13 +3,13 @@ const router = express.Router();
 const app = express();
 const cookieParser = require('cookie-parser');
 
-let index = require(__dirname+"/routes");
+let index = require(__dirname+"/routes/index.js");
 let schueler = require(__dirname+"/routes/schueler");
 let lehrer = require(__dirname+"/routes/lehrer");
 
-app.use(index,"/")
-app.use(schueler,"student")
-app.use(lehrer,"teacher")
+router.use("/",index)
+router.use("/student",schueler)
+router.use("/teacher",lehrer)
 
 
 const cors = require('cors');

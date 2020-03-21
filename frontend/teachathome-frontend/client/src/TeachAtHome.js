@@ -10,6 +10,7 @@ class TeachAtHome extends Component {
       <div style={containerStyle}>
         <Schoolname />
         <Substitute />
+        <Sick />
       </div>
     );
   }

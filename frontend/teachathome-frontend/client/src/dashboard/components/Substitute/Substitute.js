@@ -5,7 +5,7 @@ export default class Substitute extends Component {
   render() {
     return (
       <div className="Container">
-        <svg className="Shadow"></svg>
+        <svg className="Shadow" />
         <div className="Headline">
           <span>Vertretungsstunden</span>
         </div>

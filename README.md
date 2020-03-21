@@ -31,7 +31,7 @@ Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
 
 - `docker-compose up mongo` - Startet eine mongodb (auf port 27017).
 - (Falls nicht bereits ausgeführt) `npm install` - Installiert die Abhängigkeiten.
-- `node app.js 8080 localhost 27017` - Startet die Applikation.
+- `node index.js 8080 localhost 27017` - Startet die Applikation.
 
 ### Ohne Docker
 
@@ -48,11 +48,8 @@ Beispieldaten in das Backend.
 Installieren der node_modules:
 `yarn setup`
 
-Starten des Servers:
-`yarn client`
-
 Starten des Clients:
-`yarn server`
+`yarn start`
 
 Starten von Server und Client gleichzeitig:
 `yarn dev`

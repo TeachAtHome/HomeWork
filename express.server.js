@@ -76,6 +76,12 @@ class ExpressServer {
         server.get('/api/student', noCache, personRoutes.getAllStudent);
         server.post('/api/student', noCache, personRoutes.postStudent);
 
+        // Group
+        const groupRoutes = require('./group/route.group');
+        server.get('/api/group/:name', groupRoutes.getGroup);
+        server.get('/api/group', groupRoutes.getAllGroups);
+        server.post('/api/group', groupRoutes.postGroup);
+
         // Storage
         const storageRoutes = require('./storage/route.storage');
         server.put('/api/upload', noCache, storageRoutes.uploadDocument);

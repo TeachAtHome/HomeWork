@@ -1,0 +1,65 @@
+#Vertretungsstunden {
+  position: absolute;
+  width: 833px;
+  height: 163px;
+  left: 218px;
+  top: 241px;
+  overflow: visible;
+}
+.Surface_u {
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  position: absolute;
+  overflow: visible;
+  width: 842px;
+  height: 172px;
+  left: 0px;
+  top: 0px;
+}
+#Vertretungsstunden_v {
+  position: absolute;
+  left: 16px;
+  top: 15px;
+  overflow: visible;
+  width: 213px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+}
+#Freitag__18_03_2020___3_4_Stun {
+  position: absolute;
+  left: 16px;
+  top: 79px;
+  overflow: visible;
+  width: 457px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Freitag__18_03_2020___5_6_Stun {
+  position: absolute;
+  left: 16px;
+  top: 121px;
+  overflow: visible;
+  width: 457px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}

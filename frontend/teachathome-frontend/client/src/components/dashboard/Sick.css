@@ -1,0 +1,177 @@
+#Teacher_dashboard {
+  position: absolute;
+  width: 1920px;
+  height: 1543px;
+  background-color: rgba(255, 255, 255, 1);
+  overflow: hidden;
+  --web-view-name: Teacher-dashboard;
+  --web-view-id: Teacher_dashboard;
+  --web-scale-on-resize: true;
+  --web-enable-deep-linking: true;
+}
+#Kranke_Sch_ler {
+  position: absolute;
+  width: 229.445px;
+  height: 303px;
+  left: 1472.4px;
+  top: 241.5px;
+  overflow: visible;
+}
+.Surface {
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.2));
+  overflow: visible;
+  position: absolute;
+  width: 238.445px;
+  height: 312px;
+  left: 0px;
+  top: 0px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+#Kranke_Sch_ler_i {
+  position: absolute;
+  left: 16px;
+  top: 13px;
+  overflow: visible;
+  width: 161px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+}
+#Repeat_Grid_2 {
+  position: absolute;
+  width: 199px;
+  height: 210px;
+  left: 16px;
+  top: 77px;
+  overflow: hidden;
+}
+#Repeat_Grid_2_0 {
+  position: absolute;
+  width: 199px;
+  height: 84px;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+}
+#Thomas_Meyer__5c {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 194px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Peter_M_ller__7a {
+  position: absolute;
+  left: 0px;
+  top: 42px;
+  overflow: visible;
+  width: 200px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Repeat_Grid_2_1 {
+  position: absolute;
+  width: 199px;
+  height: 84px;
+  left: 0px;
+  top: 84px;
+  overflow: visible;
+}
+#Thomas_Meyer__5c_o {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 194px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Peter_M_ller__7a_p {
+  position: absolute;
+  left: 0px;
+  top: 42px;
+  overflow: visible;
+  width: 200px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Repeat_Grid_2_2 {
+  position: absolute;
+  width: 199px;
+  height: 84px;
+  left: 0px;
+  top: 168px;
+  overflow: visible;
+}
+#Thomas_Meyer__5c_r {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: visible;
+  width: 194px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}
+#Peter_M_ller__7a_s {
+  position: absolute;
+  left: 0px;
+  top: 42px;
+  overflow: visible;
+  width: 200px;
+  height: 42px;
+  line-height: 20px;
+  margin-top: -3px;
+  text-align: left;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: rgba(117, 117, 117, 1);
+  letter-spacing: 0.18px;
+}

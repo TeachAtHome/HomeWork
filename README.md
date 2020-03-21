@@ -27,3 +27,7 @@ Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
 * `docker-compose up mongo` - Startet eine mongodb (auf port 27017).
 * (Falls nicht bereits ausgeführt) `npm install` - Installiert die Abhängigkeiten.
 * `node app.js 8080 localhost 27017` - Startet die Applikation.
+
+### Ohne Docker
+Damit die mongodb gemockt wird, muss die Umgebungsvariable "DBMOCK" gesetzt
+werden (der Wert ist egal).

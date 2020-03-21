@@ -1,4 +1,13 @@
-const MongoClient = require('mongodb').MongoClient;
+var MongoClient;
+
+if (process.env.DBMOCK) {
+    console.log("Using mocked mongo");
+    MongoClient = require('mongo-mock').MongoClient;
+    MongoClient.persist="mongo_mock.js";
+} else {
+    MongoClient = require('mongodb').MongoClient;
+}
+ 
 
 class MongoService {
     constructor(dbHost, dbPort, dbName) {
@@ -10,7 +19,7 @@ class MongoService {
     }
 
     async open() {
-        this.client = await MongoClient.connect(`mongodb://${this.dbHost}:${this.dbPort}`, { useUnifiedTopology: true })
+        this.client = await MongoClient.connect(`mongodb://${this.dbHost}:${this.dbPort}/${this.dbName}`, { useUnifiedTopology: true })
             .catch(err => { console.log(err); });
         this.db = await this.client.db(this.dbName);
     }
@@ -23,6 +32,7 @@ class MongoService {
         const response = await this.db.collection(collectionName).insertOne(objectToInsert);
         // select first entry, because we only insert one entry and the array consists of one object.
         const id = response.ops[0]._id;
+
         return Promise.resolve(id);
     }
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import Dashboard from './components/dashboard/App';
+import Substitute from './components/dashboard/Substitute';
+import Grades from './components/dashboard/Grades';
 
 class TeachAtHome extends Component {
   render() {
     return (
       <div>
-        <Dashboard />
+        <Substitute />
+        <Grades />
       </div>
     );
   }

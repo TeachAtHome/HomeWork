@@ -43,7 +43,13 @@ app.use(cookieParser());
 const PersonService = require('./person/service.person');
 const PersonRepository = require('./person/repository.person');
 const pRepository = new PersonRepository(db);
-const pService = new PersonService(pRepository)
+const pService = new PersonService(pRepository);
+
+// Group service
+const GroupService = require('./group/service.group');
+const GroupRepository = require('./group/repository.group');
+const gRepository = new GroupRepository(db);
+const gService = new GroupService(gRepository);
 
 // Storage service
 const StorageService = require('./storage/service.storage');
@@ -52,7 +58,8 @@ const sService = new StorageService();
 // Collect injectable services
 var services = {
   personService: pService,
-  storageService: sService
+  groupService: gService,
+  storageService: sService,
 };
 
 // Inject Services
@@ -82,6 +89,12 @@ const configureAPIEndpoints = (server) => {
   server.get('/api/student/:id', personRoutes.getStudent);
   server.get('/api/student', personRoutes.getAllStudent);
   server.post('/api/student', personRoutes.postStudent);
+
+  // Group
+  const groupRoutes = require('./group/route.group');
+  server.get('/api/group/:name', groupRoutes.getGroup); 
+  server.get('/api/group', groupRoutes.getAllGroups);
+  server.post('/api/group', groupRoutes.postGroup);
 
   // Storage
   const storageRoutes = require('./storage/route.storage');

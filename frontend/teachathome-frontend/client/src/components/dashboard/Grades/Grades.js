@@ -3,6 +3,37 @@ import './Grades.css';
 import ornament from './assets/math.svg';
 
 export default class Grades extends Component {
+  state = {
+    groups: []
+  };
+
+  componentDidMount() {
+    this.getGroups()
+      .then(res => this.setState({ groups: res }))
+      .catch(err => console.log(err));
+  }
+
+  getGroups = async () => {
+    const response = await fetch('/api/group');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+
+  renderGroups = () => {
+    const renderedGroups = this.state.groups.map((group, key) => {
+      console.log(group);
+      return (
+        <div className="Entry" key={key}>
+          <img src={ornament} className="Icon" />
+          <div className="Label">{group.name}</div>
+        </div>
+      );
+    });
+
+    return renderedGroups;
+  };
+
   render() {
     return (
       <div id="Container">
@@ -10,38 +41,7 @@ export default class Grades extends Component {
         <div className="Headline">
           <span>Klassen</span>
         </div>
-        <div className="Entries">
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-          <div className="Entry">
-            <img src={ornament} className="Icon" />
-            <div className="Label">Mathematik</div>
-            <div className="Label">8a</div>
-          </div>
-        </div>
+        <div className="Entries">{this.renderGroups()}</div>
       </div>
     );
   }

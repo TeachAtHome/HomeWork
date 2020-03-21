@@ -18,7 +18,7 @@ export default class Grades extends Component {
 
   render() {
     return (
-      <div className="Container">
+      <div id="Container">
         <svg className="Shadow" />
         <div className="Headline">
           <span>Kranke Schüler</span>

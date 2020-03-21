@@ -3,6 +3,7 @@
   width: 80%;
   overflow: visible;
   border-radius: 4px;
+  margin: 32px;
 }
 
 .Shadow {
@@ -30,6 +31,7 @@
 
 .Entries {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
   padding: 0 8px 16px;
@@ -38,6 +40,7 @@
 .Entry {
   display: flex;
   height: auto;
+  position: relative;
   align-items: center;
   flex-direction: column;
   flex-shrink: 0;

@@ -2,6 +2,7 @@
   position: relative;
   width: 80%;
   overflow: visible;
+  margin: 32px;
 }
 
 .Shadow {
@@ -36,141 +37,6 @@
   margin-right: 16px;
   height: 42px;
   line-height: 20px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-
-#Repeat_Grid_2 {
-  position: absolute;
-  width: 199px;
-  height: 210px;
-  left: 16px;
-  top: 77px;
-  overflow: hidden;
-}
-#Repeat_Grid_2_0 {
-  position: absolute;
-  width: 199px;
-  height: 84px;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-}
-#Thomas_Meyer__5c {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-  width: 194px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-#Peter_M_ller__7a {
-  position: absolute;
-  left: 0px;
-  top: 42px;
-  overflow: visible;
-  width: 200px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-#Repeat_Grid_2_1 {
-  position: absolute;
-  width: 199px;
-  height: 84px;
-  left: 0px;
-  top: 84px;
-  overflow: visible;
-}
-#Thomas_Meyer__5c_o {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-  width: 194px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-#Peter_M_ller__7a_p {
-  position: absolute;
-  left: 0px;
-  top: 42px;
-  overflow: visible;
-  width: 200px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-#Repeat_Grid_2_2 {
-  position: absolute;
-  width: 199px;
-  height: 84px;
-  left: 0px;
-  top: 168px;
-  overflow: visible;
-}
-#Thomas_Meyer__5c_r {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  overflow: visible;
-  width: 194px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: rgba(117, 117, 117, 1);
-  letter-spacing: 0.18px;
-}
-#Peter_M_ller__7a_s {
-  position: absolute;
-  left: 0px;
-  top: 42px;
-  overflow: visible;
-  width: 200px;
-  height: 42px;
-  line-height: 20px;
-  margin-top: -3px;
   text-align: left;
   font-family: Roboto;
   font-style: normal;

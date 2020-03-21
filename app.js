@@ -33,7 +33,7 @@ app.use(fileUpload({
 }));
 
 const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+app.use(cookieParser());
 
 /* 
   Setup Service Injection
@@ -42,8 +42,13 @@ app.use(cookieParser())
 // Person service
 const PersonService = require('./person/service.person');
 const PersonRepository = require('./person/repository.person');
+<<<<<<< HEAD
 const pReository = new PersonRepository(db);
 const pService = new PersonService(pReository)
+=======
+const pReository = new PersonRepository();
+const pService = new PersonService(pReository);
+>>>>>>> master
 
 // Storage service
 const StorageService = require('./storage/service.storage');
@@ -58,8 +63,8 @@ var services = {
 // Inject Services
 const addServicesToRequest = require('./middleware/service.dependencies.middleware');
 const setupServiceDependencies = (server) => {
-  const servicesMiddleware = addServicesToRequest(services)
-  server.use(servicesMiddleware)
+  const servicesMiddleware = addServicesToRequest(services);
+  server.use(servicesMiddleware);
 }
 setupServiceDependencies(app);
 
@@ -69,7 +74,13 @@ setupServiceDependencies(app);
 
 const configureAPIEndpoints = (server) => {
   // Hello World
-  server.get('/api/hello', (req, res) => { res.send('Hello World').status(418) })
+  server.get('/api/hello', (req, res) => { res.send('Hello World').status(200) })
+  server.post('/api/posttest', (req, res) => {
+    console.log(req.body);
+    res.send(
+      `I received your POST request. This is what you sent me: ${req.body.post}`
+    );
+  });
 
   // Person
   const personRoutes = require('./person/route.person');

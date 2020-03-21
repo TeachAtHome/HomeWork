@@ -1,5 +1,14 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const router = express.Router();
+const app = express();
+const cookieParser = require('cookie-parser');
+
+let schueler = require(__dirname+"/routes/schueler");
+let lehrer = require(__dirname+"/routes/lehrer");
+
+app.use(schueler)
+app.use(lehrer)
+
 
 const cors = require('cors');
 app.use(cors());

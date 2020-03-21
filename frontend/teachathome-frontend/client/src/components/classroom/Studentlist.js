@@ -4,8 +4,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import './Studentlist.css';
-import Student from '../shared/Student';
-
 
 export default class Studentlist extends Component {
   state = {

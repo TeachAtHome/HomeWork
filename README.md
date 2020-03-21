@@ -5,7 +5,7 @@
 - http://www.passportjs.org/docs/
 
 ## Vision
-Lehrer können auf einer Plattform Hausaufgaben einmelden, die ab Freigabe durch den Lehrer bis zu einem definierten End-Zeitpunkt eingereicht werden können. Dabei ist der Zugang auf die Schüler seiner Klasse beschränkt. Die Schüler wiederum können online die Hausaufgaben machen (direkt in der Plattform Aufgaben lösen oder Aufsätze schreiben). Der Lehrer hat immer eine Übersicht, welche Schüler ~~wann~~ die Hausaufgaben eingereicht haben. Die Schüler können angeben, wenn sie ihre Hausaufgaben nicht machen und warum (krank mit Attest einreichen, krank - Attest wird physisch eingereicht, Hausaufgabe wird physisch eingereicht).
+Lehrer können auf einer Plattform Hausaufgaben anmelden, die ab Freigabe durch den Lehrer bis zu einem definierten End-Zeitpunkt eingereicht werden können. Dabei ist der Zugang auf die Schüler seiner Klasse beschränkt. Die Schüler wiederum können online die Hausaufgaben machen (direkt in der Plattform Aufgaben lösen oder Aufsätze schreiben). Der Lehrer hat immer eine Übersicht, welche Schüler ~~wann~~ die Hausaufgaben eingereicht haben. Die Schüler können angeben, wenn sie ihre Hausaufgaben nicht machen und warum (krank mit Attest einreichen, krank - Attest wird physisch eingereicht, Hausaufgabe wird physisch eingereicht). Dem Lehrer und Schüler wird abhängig vom Endzeitpunkt visualisiert ob es noch fehlende Einreichungen gibt.
 
 ## Prozesse
 1. Ein Lehrere kann Dokumente für eine Klasse hochladen

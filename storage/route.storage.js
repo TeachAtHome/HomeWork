@@ -7,7 +7,7 @@ class StorageEndpoints {
                     message: 'No file uploaded'
                 });
             } else {
-                req.services.storageService.uploadDocument(req.files.document)
+                await req.services.storageService.uploadDocument(req.files.document)
                 res.status(201).send({
                     status: true,
                     message: 'File is uploaded',

@@ -79,16 +79,16 @@ var appHost = '0.0.0.0';
 var appPort = parseInt(process.argv[2]) || 8080;
 var dbHost = process.argv[3];
 var dbPort = parseInt(process.argv[4]);
-var dbName = "homework";
+var dbName = 'homework';
 
-const { MongoService } = require("./storage/mongoService");
+const { MongoService } = require('./storage/mongoService');
 
 async function testMongo() {
   const mongo = new MongoService(dbHost, dbPort, dbName);
   await mongo.open();
-  const collectionName = "submissions";
+  const collectionName = 'submissions';
   const idOfInsertion = await mongo.addObject(
-    { testKey1: "testVal1", testKey2: "testVal2" },
+    { testKey1: 'testVal1', testKey2: 'testVal2' },
     collectionName
   );
   const result = await mongo.getCollectionEntries(collectionName, {

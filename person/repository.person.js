@@ -1,35 +1,42 @@
 class PersonRepository {
 
-    personStore = [];
+    constructor(db) {
+        this.db = db;
+        this.collectionName = 'persons';
+    }
 
-    getPersonById(id) {
+    async getPersonById(id) {
         console.log('PersonRepository|getPersonById' + id);
-        return this.personStore.find((p) => p.id === person.id);
+
+        const result = await this.db.getCollectionEntries(this.collectionName, {id: id});
+        if (result.length > 1) {
+            console.log("Warning: Found multiple persons with the same id! " + id);
+        }
+        if (result.length >= 1) {
+            return Promise.resolve(result[0]);
+        } else {
+            return null;
+        }
     }
 
-    getAll() {
+    async getAll() {
         console.log('PersonRepository|getAll');
-        return this.personStore;
+        return await this.db.getAllCollectionEntries(this.collectionName);
     }
 
-    addPerson(person) {
+    async addPerson(person) {
         console.log('PersonRepository|addPerson' + JSON.stringify(person));
-        this.personStore.push(person);
-        console.log('PersonRepository|addPerson' + JSON.stringify(this.personStore));
+        await this.db.addObject(person, this.collectionName);
     }
 
-    deletePerson(person) {
+    async deletePerson(person) {
         console.log('PersonRepository|deletePerson' + JSON.stringify(person));
-        const personIdx = this.personStore.findIndex((p) => p.id === person.id);
-        if (personIdx >= 0)
-            this.personStore.splice(personIdx);
+        await this.db.deleteCollectionEntry(this.collectionName, {id: person.id}, true);
     }
 
-    updatePerson(person) {
+    async updatePerson(person) {
         console.log('PersonRepository|updatePerson' + JSON.stringify(person));
-        const personIdx = this.personStore.findIndex((p) => p.id === person.id);
-        if (personIdx >= 0)
-            this.personStore[personIdx] = person;
+        await this.db.updateCollectionEntry(this.collectionName, {id: person.id}, person);
     }
 }
 

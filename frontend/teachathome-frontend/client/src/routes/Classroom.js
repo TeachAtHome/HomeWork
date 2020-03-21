@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Classroom from '../components/classroom/Classroom';
+import Classroom1 from '../components/classroom/Classroom';
 
-class TeachAtHome extends Component {
+class Classroom extends Component {
   render() {
     return (
       <div>
-        <Classroom />
+        <Classroom1 />
       </div>
     );
   }
 }
 
-export default TeachAtHome;
+export default Classroom;

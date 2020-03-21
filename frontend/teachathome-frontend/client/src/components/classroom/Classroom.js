@@ -7,8 +7,6 @@ import Studentlist from "./Studentlist";
 export default class Classroom extends Component {
   state = {
     response: "",
-    post: "",
-    responseToPost: "",
     classroom: {}
   };
 
@@ -38,7 +36,7 @@ export default class Classroom extends Component {
         </header>
         <span>{this.state.classroom.name}</span>
         <div>
-          <Studentlist />
+          <Studentlist className={this.state.classroom.name}/>
         </div>
         <a href="#" onClick={console.log("TEST")}> New Entry</a>
       </div>

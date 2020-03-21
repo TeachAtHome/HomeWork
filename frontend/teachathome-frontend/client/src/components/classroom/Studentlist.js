@@ -1,60 +1,43 @@
 import React, { Component } from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 import './Studentlist.css';
+import Student from '../shared/Student';
+
 
 export default class Studentlist extends Component {
   state = {
-    response: "",
-    post: "",
-    responseToPost: ""
+    resStudents: {},
+    studentClass: this.props.className
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res }))
+    this.callGetStudentsOfClassApi()
+      .then(res => this.setState({ studentList: res }))
       .catch(err => console.log(err));
     console.log(this.state);
   }
 
-  callApi = async () => {
-    const response = await fetch("/api/student");
-    console.log(response);
-    const body = await response.text();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
+  callGetStudentsOfClassApi = async () => {
+    const response = await fetch("/api/group/" + this.state.studentClass +"/allStudents");
+    const resStudents = await response.json();
+    if (response.status !== 200) throw Error(resStudents.message);
+    return resStudents;
   };
 
   render() {
     return (
-      <div id="Schueler der Klasse">
-        <div id="Kranke_Sch_ler_i">
-          <span>Schueler der Klasse 3B-Mathe</span>
-        </div>
-        <div id="Repeat_Grid_2">
-          <div id="Repeat_Grid_2_0">
-            <div id="Thomas_Meyer__5c">
-              <span>Thomas Meyer, 5c</span>
-            </div>
-            <div id="Peter_M_ller__7a">
-              <span>Peter Müller, 7a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_2_1">
-            <div id="Thomas_Meyer__5c_o">
-              <span>Thomas Meyer, 5c</span>
-            </div>
-            <div id="Peter_M_ller__7a_p">
-              <span>Peter Müller, 7a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_2_2">
-            <div id="Thomas_Meyer__5c_r">
-              <span>Thomas Meyer, 5c</span>
-            </div>
-            <div id="Peter_M_ller__7a_s">
-              <span>Peter Müller, 7a</span>
-            </div>
-          </div>
-        </div>
+       <div>
+          <List>
+            <ListItem>
+              <ListItemText>Schueler der Klasse {this.props.className}</ListItemText>
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+            </ListItem>
+          </List>
       </div>
     );
   }

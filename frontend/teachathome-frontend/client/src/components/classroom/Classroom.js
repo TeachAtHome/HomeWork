@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import "./Classroom.css";
 import Studentlist from "./Studentlist";
 
-
-
 export default class Classroom extends Component {
   state = {
-    response: "",
+    className: "",
     classroom: {}
   };
 
@@ -14,14 +12,11 @@ export default class Classroom extends Component {
     this.callApi()
       .then(res => this.setState({ classroom: res }))
       .catch(err => console.log(err));
-    console.log(this.state);
   }
 
   callApi = async () => {
     const response = await fetch("/api/group/3B-Mathe");
-    console.log(response);
     const className = await response.json();
-    console.log(className);
     if (response.status !== 200) throw Error(className.message);
     return className;
   };
@@ -34,11 +29,10 @@ export default class Classroom extends Component {
             Startseite
           </a>
         </header>
-        <span>{this.state.classroom.name}</span>
         <div>
-          <Studentlist />
+          <Studentlist items={this.state.classroom}/>
         </div>
-        <a href="#" onClick={console.log("TEST")}> New Entry</a>
+        <a href="#"> New Entry</a>
       </div>
     );
   }

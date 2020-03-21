@@ -2,9 +2,30 @@ import React, { Component } from 'react';
 import './Sick.css';
 
 export default class Grades extends Component {
+  state = {
+    response: "",
+    post: "",
+    responseToPost: ""
+  };
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res }))
+      .catch(err => console.log(err));
+    console.log(this.state);
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/student");
+    console.log(response);
+    const body = await response.text();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+
   render() {
     return (
-      <div id="Kranke_Sch_ler">
+      <div id="Kranke_Schueler">
         <svg class="Surface" viewBox="0 0 229.445 303">
           <path
             fill="rgba(255,255,255,1)"

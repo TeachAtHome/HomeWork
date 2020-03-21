@@ -19,7 +19,7 @@ app.use(fileUpload({
 }));
 
 const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+app.use(cookieParser());
 
 /* 
   Setup Service Injection
@@ -29,7 +29,7 @@ app.use(cookieParser())
 const PersonService = require('./person/service.person');
 const PersonRepository = require('./person/repository.person');
 const pReository = new PersonRepository();
-const pService = new PersonService(pReository)
+const pService = new PersonService(pReository);
 
 // Storage service
 const StorageService = require('./storage/service.storage');
@@ -44,8 +44,8 @@ var services = {
 // Inject Services
 const addServicesToRequest = require('./middleware/service.dependencies.middleware');
 const setupServiceDependencies = (server) => {
-  const servicesMiddleware = addServicesToRequest(services)
-  server.use(servicesMiddleware)
+  const servicesMiddleware = addServicesToRequest(services);
+  server.use(servicesMiddleware);
 }
 setupServiceDependencies(app);
 
@@ -55,7 +55,13 @@ setupServiceDependencies(app);
 
 const configureAPIEndpoints = (server) => {
   // Hello World
-  server.get('/api/hello', (req, res) => { res.send('Hello World').status(418) })
+  server.get('/api/hello', (req, res) => { res.send('Hello World').status(200) })
+  server.post('/api/posttest', (req, res) => {
+    console.log(req.body);
+    res.send(
+      `I received your POST request. This is what you sent me: ${req.body.post}`
+    );
+  });
 
   // Person
   const personRoutes = require('./person/route.person');
@@ -73,16 +79,21 @@ var appHost = '0.0.0.0';
 var appPort = parseInt(process.argv[2]) || 8080;
 var dbHost = process.argv[3];
 var dbPort = parseInt(process.argv[4]);
-var dbName = 'homework'
+var dbName = 'homework';
 
 const { MongoService } = require('./storage/mongoService');
 
 async function testMongo() {
-  const mongo =  new MongoService(dbHost, dbPort, dbName);
+  const mongo = new MongoService(dbHost, dbPort, dbName);
   await mongo.open();
   const collectionName = 'submissions';
-  const idOfInsertion = await mongo.addObject({testKey1: 'testVal1', testKey2: 'testVal2'}, collectionName);
-  const result = await mongo.getCollectionEntries(collectionName, { _id: idOfInsertion });
+  const idOfInsertion = await mongo.addObject(
+    { testKey1: 'testVal1', testKey2: 'testVal2' },
+    collectionName
+  );
+  const result = await mongo.getCollectionEntries(collectionName, {
+    _id: idOfInsertion
+  });
   console.log(result);
   const result2 = await mongo.getAllCollectionEntries(collectionName);
   console.log(result2);

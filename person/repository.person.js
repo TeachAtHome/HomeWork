@@ -4,7 +4,7 @@ class PersonRepository {
 
     getPersonById(id) {
         console.log('PersonRepository|getPersonById' + id);
-        return this.personStore.find((p) => p.id === id);
+        return this.personStore.find((p) => p.id === person.id);
     }
 
     getAll() {

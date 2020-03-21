@@ -11,13 +11,15 @@ export class App extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ response: res }))
       .catch(err => console.log(err));
+    console.log(this.state);
   }
 
   callApi = async () => {
     const response = await fetch("/api/hello");
-    const body = await response.json();
+    console.log(response);
+    const body = await response.text();
     if (response.status !== 200) throw Error(body.message);
 
     return body;
@@ -25,7 +27,7 @@ export class App extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const response = await fetch("/api/world", {
+    const response = await fetch("/api/posttest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

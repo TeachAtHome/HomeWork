@@ -36,7 +36,7 @@ export default class Classroom extends Component {
         </header>
         <span>{this.state.classroom.name}</span>
         <div>
-          <Studentlist className={this.state.classroom.name}/>
+          <Studentlist />
         </div>
         <a href="#" onClick={console.log("TEST")}> New Entry</a>
       </div>

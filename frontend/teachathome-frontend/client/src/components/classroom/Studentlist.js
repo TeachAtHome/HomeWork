@@ -29,7 +29,6 @@ export default class Studentlist extends Component {
   };
 
   render() {
-
     if(this.state.studentList.students)
     {
     var json = this.state.studentList.students;

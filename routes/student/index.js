@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET admin page. */
-router.get('/schueler/:id', function(req, res, next){
-    res.send("schueler");
+router.get('/student/:id', function(req, res, next){
+    res.send("student");
 });
 
 

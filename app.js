@@ -3,8 +3,8 @@ const router = express.Router();
 const app = express();
 const cookieParser = require('cookie-parser');
 
-let schueler = require(__dirname+"/routes/schueler");
-let lehrer = require(__dirname+"/routes/lehrer");
+let schueler = require(__dirname+"/routes/student");
+let lehrer = require(__dirname+"/routes/teacher");
 
 app.use(schueler)
 app.use(lehrer)

@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import Substitute from './components/dashboard/Substitute';
-import Grades from './components/dashboard/Grades';
-import Sick from './components/dashboard/Sick';
+import Substitute from './dashboard/components/Substitute/Substitute';
+import Grades from './dashboard/components/Grades/Grades';
+import Sick from './dashboard/components/Sick/Sick';
 
 class TeachAtHome extends Component {
   render() {
     return (
-      <div>
+      <div style={containerStyle}>
         <Substitute />
-        <Grades />
-        <Sick />
       </div>
     );
   }
 }
+
+const containerStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  display: 'flex'
+};
 
 export default TeachAtHome;

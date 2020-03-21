@@ -19,12 +19,14 @@ class MongoService {
     }
 
     async open() {
+        console.log("open db");
         this.client = await MongoClient.connect(`mongodb://${this.dbHost}:${this.dbPort}/${this.dbName}`, { useUnifiedTopology: true })
             .catch(err => { console.log(err); });
         this.db = await this.client.db(this.dbName);
     }
 
     async close() {
+        console.log("close db");
         await this.client.close();
     }
 
@@ -42,6 +44,17 @@ class MongoService {
 
     async getAllCollectionEntries(collectionName) {
         return await this.db.collection(collectionName).find().toArray();
+    }
+
+    async deleteCollectionEntry(collectionName, query) {
+        await this.db.collection(collectionName).deleteOne(query)
+            .catch(err => { console.log(err); });
+    }
+
+    async updateCollectionEntry(collectionName, query, objectToUpdate) {
+        // Use updateOne in future
+        await this.db.collection(collectionName).update(query, objectToUpdate)
+            .catch(err => { console.log(err); });
     }
 }
 

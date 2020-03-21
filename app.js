@@ -1,6 +1,20 @@
 const express = require('express');
 const app = express();
 
+var appHost = '0.0.0.0';
+var appPort = parseInt(process.argv[2]) || 8080;
+var dbHost = process.argv[3];
+var dbPort = parseInt(process.argv[4]);
+var dbName = 'homework'
+
+/*
+  Configure db
+*/
+
+const MongoService = require('./storage/mongoService').MongoService;
+const db = new MongoService(dbHost, dbPort, dbName);
+db.open().catch(console.error);
+
 /* 
   Initialize Middleware
 */
@@ -28,8 +42,8 @@ app.use(cookieParser());
 // Person service
 const PersonService = require('./person/service.person');
 const PersonRepository = require('./person/repository.person');
-const pReository = new PersonRepository();
-const pService = new PersonService(pReository);
+const pRepository = new PersonRepository(db);
+const pService = new PersonService(pRepository)
 
 // Storage service
 const StorageService = require('./storage/service.storage');
@@ -75,32 +89,8 @@ const configureAPIEndpoints = (server) => {
 }
 configureAPIEndpoints(app);
 
-var appHost = '0.0.0.0';
-var appPort = parseInt(process.argv[2]) || 8080;
-var dbHost = process.argv[3];
-var dbPort = parseInt(process.argv[4]);
-var dbName = 'homework';
 
-const { MongoService } = require('./storage/mongoService');
-
-async function testMongo() {
-  const mongo = new MongoService(dbHost, dbPort, dbName);
-  await mongo.open();
-  const collectionName = 'submissions';
-  const idOfInsertion = await mongo.addObject(
-    { testKey1: 'testVal1', testKey2: 'testVal2' },
-    collectionName
-  );
-  const result = await mongo.getCollectionEntries(collectionName, {
-    _id: idOfInsertion
-  });
-  console.log(result);
-  const result2 = await mongo.getAllCollectionEntries(collectionName);
-  console.log(result2);
-  await mongo.close();
-}
-
-testMongo();
 app.listen(appPort, appHost, function () {
   console.log('Example app listening on port: ' + appPort);
+  // todo: close mongo db connection
 });

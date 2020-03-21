@@ -44,8 +44,6 @@ app.put('/upload', function (req, res) {
   }
 });
 
-app.listen(8000, function () {
-  console.log('Example app listening on port 8000!');
 var appHost = '0.0.0.0';
 var appPort = parseInt(process.argv[2]);
 var dbHost = process.argv[3];
@@ -76,5 +74,6 @@ client.connect(function(err, c) {
 
 });
 
-console.log('Trying to establish a connection on port:' + appPort);
-});
+app.listen(appPort, appHost, function () {
+  console.log('Example app listening on port: ' + appPort);
+}); 

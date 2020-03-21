@@ -38,6 +38,11 @@ Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
 Damit die mongodb gemockt wird, muss die Umgebungsvariable "DBMOCK" gesetzt
 werden (der Wert ist egal).
 
+### Beispiel Daten
+
+Das bash script `fill_example_data.sh` sendet über die REST API und curl erste
+Beispieldaten in das Backend.
+
 ### React Frontend
 
 Installieren der node_modules:

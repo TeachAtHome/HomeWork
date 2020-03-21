@@ -1,17 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const app = express();
-const cookieParser = require('cookie-parser');
 
-let index = require(__dirname+"/routes/index.js");
-let schueler = require(__dirname+"/routes/schueler");
-let lehrer = require(__dirname+"/routes/lehrer");
-
-router.use("/",index)
-router.use("/student",schueler)
-router.use("/teacher",lehrer)
-
-
+/* 
+  Initialize Middleware
+*/
 const cors = require('cors');
 app.use(cors());
 
@@ -19,7 +11,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// fileupload
 const fileUpload = require('express-fileupload');
 app.use(fileUpload({
   createParentPath: true,
@@ -27,36 +18,59 @@ app.use(fileUpload({
   useTempFiles: true
 }));
 
-// const {initBucket} = require('./storage/gcsService');
-// initBucket();
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+/* 
+  Setup Service Injection
+*/
 
-const { uploadDocument } = require('./storage/gcsService');
+// Person service
+const PersonService = require('./person/service.person');
+const PersonRepository = require('./person/repository.person');
+const pReository = new PersonRepository();
+const pService = new PersonService(pReository)
 
-app.put('/upload', function (req, res) {
-  try {
-    if (!req.files || !req.files.document) {
-      res.status(400).send({
-        status: false,
-        message: 'No file uploaded'
-      });
-    } else {
-      uploadDocument(req.files.document);
-      res.send({
-        status: true,
-        message: 'File is uploaded',
-      });
-    }
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+// Storage service
+const StorageService = require('./storage/service.storage');
+const sService = new StorageService();
+
+// Collect injectable services
+var services = {
+  personService: pService,
+  storageService: sService
+};
+
+// Inject Services
+const addServicesToRequest = require('./middleware/service.dependencies.middleware');
+const setupServiceDependencies = (server) => {
+  const servicesMiddleware = addServicesToRequest(services)
+  server.use(servicesMiddleware)
+}
+setupServiceDependencies(app);
+
+/* 
+  Configure API Endpoints
+*/
+
+const configureAPIEndpoints = (server) => {
+  // Hello World
+  server.get('/api/hello', (req, res) => { res.send('Hello World').status(418) })
+
+  // Person
+  const personRoutes = require('./person/route.person');
+  server.get('/api/student/:id', personRoutes.getStudent);
+  server.get('/api/student', personRoutes.getAllStudent);
+  server.post('/api/student', personRoutes.postStudent);
+
+  // Storage
+  const storageRoutes = require('./storage/route.storage');
+  app.put('/api/upload', storageRoutes.uploadDocument);
+}
+configureAPIEndpoints(app);
 
 var appHost = '0.0.0.0';
-var appPort = parseInt(process.argv[2]);
+var appPort = parseInt(process.argv[2]) || 8080;
 var dbHost = process.argv[3];
 var dbPort = parseInt(process.argv[4]);
 var dbName = 'homework'
@@ -78,4 +92,4 @@ async function testMongo() {
 testMongo();
 app.listen(appPort, appHost, function () {
   console.log('Example app listening on port: ' + appPort);
-}); 
+});

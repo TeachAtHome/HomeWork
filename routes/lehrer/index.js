@@ -7,7 +7,6 @@ router.get('/lehrer/:id', function(req, res, next){
     res.send("lehrer");
 });
 
-
 module.exports = router; 
 
 

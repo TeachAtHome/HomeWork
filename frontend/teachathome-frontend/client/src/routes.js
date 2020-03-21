@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route} from 'react-router';
-import TeachAtHome from './TeachAtHome';
+import TeachAtHome from './routes/TeachAtHome';
 
 const Routes = (props) => (
   <Router {...props}>

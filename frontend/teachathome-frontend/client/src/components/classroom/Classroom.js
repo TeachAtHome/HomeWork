@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Classroom.css";
 import Studentlist from "./Studentlist";
+import { Link } from 'react-router';
 
 export default class Classroom extends Component {
   state = {
@@ -32,7 +33,7 @@ export default class Classroom extends Component {
         <div>
           <Studentlist items={this.state.classroom}/>
         </div>
-        <a href="#"> New Entry</a>
+        <Link to={{ pathname: '/editor', state: {groupName: this.state.classroom.name} } }>Neue Hausaufgabe erstellen</Link>
       </div>
     );
   }

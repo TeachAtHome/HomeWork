@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
-import Classroom1 from '../components/classroom/Classroom';
+import Schoolname from '../components/dashboard/Schoolname/Schoolname';
+import ClassroomList from '../components/classroom/Classroom';
 
 class Classroom extends Component {
   render() {
     return (
-      <div style={containerStyle}>
-        <Classroom1 />
+      <div>
+        <div style={containerStyle}>
+          <Schoolname />
+        </div>
+        <div style={divClassroom}>
+          <ClassroomList />
+        </div>
       </div>
     );
   }
 }
 
 const containerStyle = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column'
+};
+
+const divClassroom = {
   justifyContent: 'left',
   alignItems: 'left',
   display: 'flex',

@@ -39,8 +39,8 @@ export default class Studentlist extends Component {
     });
 
     return (
-       <div>
-          <List dense style={styles.root}>
+      <div id="Container">
+          <List>
             <ListItem>
               <ListItemText>Schueler der Klasse {this.state.studentClass}</ListItemText>
             </ListItem>
@@ -64,11 +64,3 @@ export default class Studentlist extends Component {
   }
   }
 }
-
-const styles = makeStyles(theme => ({
-  root: {
-    width: '1%',
-    maxWidth: 360,
-    backgroundColor: 'green',
-  },
-}));

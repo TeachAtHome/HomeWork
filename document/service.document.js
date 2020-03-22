@@ -22,6 +22,10 @@ class DocumentService {
     async getAllDocuments() {
         return await this.documentRepository.getAllDocuments();
     }
+
+    async getAllDocumentsByGroup(group) {
+        return await this.documentRepository.getAllDocumentsByGroup(group);
+    }
 }
 
 module.exports = DocumentService;

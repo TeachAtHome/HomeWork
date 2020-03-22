@@ -3,11 +3,11 @@ var MongoClient;
 if (process.env.DBMOCK) {
     console.log("Using mocked mongo");
     MongoClient = require('mongo-mock').MongoClient;
-    MongoClient.persist="mongo_mock.js";
+    MongoClient.persist = "mongo_mock.js";
 } else {
     MongoClient = require('mongodb').MongoClient;
 }
- 
+
 
 class MongoService {
     constructor(dbHost, dbPort, dbName) {

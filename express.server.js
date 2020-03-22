@@ -72,7 +72,7 @@ class ExpressServer {
         // Person
         const personRoutes = require('./person/route.person');
         server.get('/api/student/:id', noCache, personRoutes.getStudent);
-        server.get('/api/student', noCache, personRoutes.getAllStudent);
+        server.get('/api/student', noCache, personRoutes.getAllStudents);
         server.post('/api/student', noCache, personRoutes.postStudent);
 
         // Group

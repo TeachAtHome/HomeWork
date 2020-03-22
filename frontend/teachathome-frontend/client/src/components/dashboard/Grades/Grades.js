@@ -1,72 +1,50 @@
 import React, { Component } from 'react';
 import './Grades.css';
+import ornament from './assets/math.svg';
 
 export default class Grades extends Component {
+  state = {
+    groups: []
+  };
+
+  componentDidMount() {
+    this.getGroups()
+      .then(res => this.setState({ groups: res }))
+      .catch(err => console.log(err));
+  }
+
+  getGroups = async () => {
+    const response = await fetch('/api/group');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body;
+  };
+
+  renderGroups = () => {
+    const renderedGroups = this.state.groups.map((group, key) => {
+      console.log(group);
+      return (
+        <div className="Entry" key={key}>
+          //need to be refactored / value needs to be send to /classroom page
+          <a href="/classroom">
+          <img src={ornament} className="Icon" />
+          <div className="Label">{group.name}</div>
+          </a>
+        </div>
+      );
+    });
+
+    return renderedGroups;
+  };
+
   render() {
     return (
-      <div id="Kranke_Sch_ler_">
-        <svg className="Surface_">
-          <rect
-            fill="rgba(255,255,255,1)"
-            id="Surface_"
-            rx="4"
-            ry="4"
-            x="0"
-            y="0"
-            width="229.445"
-            height="470"
-          ></rect>
-        </svg>
-        <div id="Klassen">
+      <div id="Container">
+        <svg className="Shadow"></svg>
+        <div className="Headline">
           <span>Klassen</span>
         </div>
-        <div id="Repeat_Grid_3">
-          <div id="Repeat_Grid_3_0">
-            <div id="Klasse_8a">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_1">
-            <div id="Klasse_8a_ba">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_2">
-            <div id="Klasse_8a_bc">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_3">
-            <div id="Klasse_8a_be">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_4">
-            <div id="Klasse_8a_bg">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_5">
-            <div id="Klasse_8a_bi">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_6">
-            <div id="Klasse_8a_bk">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_7">
-            <div id="Klasse_8a_bm">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-          <div id="Repeat_Grid_3_8">
-            <div id="Klasse_8a_bo">
-              <span>Klasse 8a</span>
-            </div>
-          </div>
-        </div>
+        <div className="Entries">{this.renderGroups()}</div>
       </div>
     );
   }

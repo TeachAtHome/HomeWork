@@ -6,12 +6,12 @@ import logoText from '../../../assets/LogoText.png';
 export default class Schoolname extends Component {
   render() {
     return (
-      <div id="Container">
+      <div id="NameContainer">
         <a href="/">
           <img id="Logo" src={logo} alt="Logo" />
           <img id="LogoText" src={logoText} alt="logoText" />
         </a>
-        <div className="Titel">
+        <div id="Titel">
           <span>Geschwister-Scholl-Gymnasium</span>
         </div>
         <div id="Year">

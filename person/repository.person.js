@@ -78,8 +78,9 @@ class PersonRepository {
                 for (const role in Person.ROLES) {
                     query[Person.ROLES[role]] = person[propertyKey] === Person.ROLES[role]
                 }
-            } else if (propertyKey !== '_id') {
-                query[propertyKey] = person[propertyKey]
+            } else {
+                if (person[propertyKey])
+                    query[propertyKey] = person[propertyKey]
             }
         }
         return query;

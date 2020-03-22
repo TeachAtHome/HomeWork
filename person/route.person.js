@@ -34,9 +34,10 @@ class PersonEndpoints {
             const personId = req.body.id;
             const personName = req.body.name;
             const personEmail = req.body.email;
+            const personSick = req.body.sick;
 
             try {
-                await req.services.personService.addPerson(personId, personName, personEmail);
+                await req.services.personService.addPerson(personId, personName, personEmail, personSick);
                 res.sendStatus(201);
             } catch (error) {
                 res.send(error).status(400);

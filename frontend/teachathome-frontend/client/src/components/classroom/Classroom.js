@@ -5,7 +5,8 @@ import { Link } from 'react-router';
 export default class Classroom extends Component {
   constructor(props) {
     super(props);
-    this.groupName = this.props.groupName;
+    console.log('test', this.props);
+    this.groupName = this.props.group.name;
   }
 
   state = {
@@ -74,6 +75,7 @@ const linkstyle = {
   textAlign: 'center',
   fontSize: 24,
   margin: 32,
+  marginBottom: 0,
   textAlignVertical: 'center',
   border: '1px solid rgb(26,49,65)'
 };

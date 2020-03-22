@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Schoolname from '../components/dashboard/Schoolname/Schoolname';
 import ClassroomList from '../components/classroom/Classroom';
+import ExerciseTable from '../components/dashboard/ExerciseTable';
 
 class Classroom extends Component {
   render() {
@@ -9,9 +10,14 @@ class Classroom extends Component {
         <div style={containerStyle}>
           <Schoolname />
           <div style={divClassroom}>
-            <ClassroomList groupName={this.props.location.state.groupName} />
+            <ClassroomList group={this.props.location.state.group} />
           </div>
         </div>
+        <ExerciseTable
+          groupID={this.props.location.state.group._id}
+          groupName={this.props.location.state.group.name}
+          tableName={'Offene Aufgaben der Klasse'}
+        />
       </div>
     );
   }

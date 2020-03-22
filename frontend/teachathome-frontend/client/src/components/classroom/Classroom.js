@@ -33,7 +33,7 @@ export default class Classroom extends Component {
         (student, key) => {
           return (
             <div key={key} className="Student">
-              <span>{student.name + ' - ' + student.email}</span>
+              <span>{student.firstname + ' ' + student.lastname + ' - ' + student.email}</span>
             </div>
           );
         }

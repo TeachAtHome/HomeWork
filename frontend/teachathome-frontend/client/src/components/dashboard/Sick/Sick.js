@@ -24,7 +24,7 @@ export default class Grades extends Component {
       if(student.sick === true){
         return (
           <div key={key} className="Student">
-            <span>{student.name}</span>
+            <span>{student.firstname} {student.lastname}</span>
           </div>
         );
       }

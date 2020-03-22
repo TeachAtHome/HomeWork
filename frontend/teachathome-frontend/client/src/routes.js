@@ -8,6 +8,7 @@ const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={TeachAtHome} />
     <Route path="/editor" component={EditorRouting} />
+    <Route path="/editor_student" component={() => <EditorRouting loadDocument={true} />} />
     <Route path="/classroom" component={Classroom} />
   </Router>
 );

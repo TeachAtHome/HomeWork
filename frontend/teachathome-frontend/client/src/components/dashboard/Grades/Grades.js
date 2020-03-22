@@ -39,7 +39,7 @@ export default class Grades extends Component {
 
   render() {
     return (
-      <div id="Container">
+      <div className="Container">
         <svg className="Shadow"></svg>
         <div className="Headline">
           <span>Klassen</span>

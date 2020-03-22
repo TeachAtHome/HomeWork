@@ -14,7 +14,7 @@ export default class Schoolname extends Component {
         <div id="Titel">
           <span>Geschwister-Scholl-Gymnasium</span>
         </div>
-        <div id="Year">
+        <div className="Year">
           <span>Schuljahr 2020/21</span>
         </div>
       </div>

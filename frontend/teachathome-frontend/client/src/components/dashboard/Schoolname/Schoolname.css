@@ -1,4 +1,4 @@
-.Container {
+#NameContainer {
   position: relative;
   height: 120px;
   overflow: visible;
@@ -10,8 +10,9 @@
   margin-bottom: 96px;
 }
 
-.Titel {
+#Titel {
   position: relative;
+  margin-top: 32px;
   overflow: visible;
   text-align: center;
   font-family: Roboto;
@@ -22,7 +23,7 @@
   letter-spacing: -0.08800000190734864px;
 }
 
-.Year {
+#Year {
   position: relative;
   margin-top: 16px;
   white-space: nowrap;
@@ -37,6 +38,8 @@
 
 #Logo {
   position: left;
+  margin-left: 32px;
+  margin-top: 16px;
   height: 100px;
   width: 100px;
 }

@@ -47,7 +47,6 @@ class ExpressServer {
         server.use(compression());
         server.use(fileUpload({
             createParentPath: true,
-            safeFileNames: true,
             useTempFiles: true
         }));
 
@@ -83,9 +82,19 @@ class ExpressServer {
         server.get('/api/group', groupRoutes.getAllGroups);
         server.post('/api/group', groupRoutes.postGroup);
 
+        // Document
+        const documentRoutes = require('./document/route.document');
+        server.post('/api/document', documentRoutes.postLinkDocumentToGroups);
+        server.get('/api/document/:documentRefId', documentRoutes.getDocument);
+        server.get('/api/document', documentRoutes.getAllDocuments);
+
         // Storage
         const storageRoutes = require('./storage/route.storage');
-        server.put('/api/upload', noCache, storageRoutes.uploadDocument);
+        server.put('/api/storage/upload', noCache, storageRoutes.uploadDocument);
+        server.post('/api/storage/store', noCache, storageRoutes.storeDocument);
+        server.get('/api/storage/download/:documentRefId', noCache, storageRoutes.downloadDocument);
+        server.get('/api/storage/document/:documentRefId', noCache, storageRoutes.getDocument);
+
     }
 
 }

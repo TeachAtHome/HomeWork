@@ -4,6 +4,12 @@ import Studentlist from "./Studentlist";
 import { Link } from 'react-router';
 
 export default class Classroom extends Component {
+
+  constructor(props) {
+      super(props);
+      this.groupName = this.props.groupName;
+  }
+
   state = {
     className: "",
     classroom: {}
@@ -16,7 +22,7 @@ export default class Classroom extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch("/api/group/3B-Mathe");
+    const response = await fetch("/api/group/" + this.groupName);
     const className = await response.json();
     if (response.status !== 200) throw Error(className.message);
     return className;
@@ -25,11 +31,6 @@ export default class Classroom extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <a className="App-link" href="/" rel="noopener noreferrer">
-            Startseite
-          </a>
-        </header>
         <div>
           <Studentlist items={this.state.classroom}/>
         </div>

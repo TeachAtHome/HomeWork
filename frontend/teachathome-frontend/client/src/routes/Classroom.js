@@ -4,14 +4,13 @@ import ClassroomList from '../components/classroom/Classroom';
 
 class Classroom extends Component {
   render() {
-    console.log(this.props.propDummy);
     return (
       <div>
         <div style={containerStyle}>
           <Schoolname />
         </div>
         <div style={divClassroom}>
-          <ClassroomList />
+          <ClassroomList groupName={this.props.location.state.groupName} />
         </div>
       </div>
     );

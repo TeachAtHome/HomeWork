@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Grades.css';
 import ornament from './assets/math.svg';
+import { Link } from 'react-router';
 
 export default class Grades extends Component {
   state = {
@@ -25,11 +26,10 @@ export default class Grades extends Component {
       console.log(group);
       return (
         <div className="Entry" key={key}>
-          //need to be refactored / value needs to be send to /classroom page
-          <div onClick={event =>  window.location.href='/classroom'}>
+          <Link to={{ pathname: '/classroom', state: {groupName: group.name} } }>
             <img src={ornament} className="Icon" />
             <div className="Label">{group.name}</div>
-          </div>
+          </Link>
         </div>
       );
     });

@@ -21,10 +21,10 @@ export default class Grades extends Component {
 
   renderStudents = () => {
     const renderedStudents = this.state.students.map((student, key) => {
-      if(student.sick == true){
+      if(student.sick === true){
         return (
           <div key={key} className="Student">
-            <span>{student.name}</span>
+            <span>{student.firstname} {student.lastname}</span>
           </div>
         );
       }

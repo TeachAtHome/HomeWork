@@ -51,39 +51,30 @@ export default class App extends Component {
   }
 
   state = {
-    homeworkEntryList: [{}],
-    data: [
-      {
-        title: 'Bruchrechnung',
-        group: '3B-Mathe',
-        startDate: '12.03.2020, 15:30 Uhr',
-        endDate: '13.03.2020, 17:30 Uhr',
-        submissions: '12/27'
-      }
-    ]
+    homeworkEntryList: []
   };
 
   componentDidMount() {
     if(this.groupID){
       this.callGetAllEntriesFromGroupApi()
-        .then(res => this.setState({ homeworkEntries: res }))
+        .then(res => this.setState({ homeworkEntryList: res }))
         .catch(err => console.log(err));
       } else {
         this.callGetAllEntriesApi()
-          .then(res => this.setState({ homeworkEntries: res }))
+          .then(res => this.setState({ homeworkEntryList: res }))
           .catch(err => console.log(err));
       }
   }
 
   callGetAllEntriesFromGroupApi = async () => {
-    const response = await fetch("/api/group/" + this.groupID);
+    const response = await fetch("/api/document?group=" + this.groupName);
     const homeworkEntries = await response.json();
     if (response.status !== 200) throw Error(homeworkEntries.message);
     return homeworkEntries;
   };
 
   callGetAllEntriesApi = async () => {
-    const response = await fetch("/api/group/");
+    const response = await fetch("/api/document");
     const homeworkEntries = await response.json();
     if (response.status !== 200) throw Error(homeworkEntries.message);
     return homeworkEntries;
@@ -96,13 +87,10 @@ export default class App extends Component {
           icons={tableIcons}
           title={this.props.tableName}
           columns={[
-            { title: 'Titel', field: 'title' },
-            { title: 'Klasse', field: 'group' },
-            { title: 'Anfangsdatum', field: 'startDate' },
-            { title: 'Enddatum', field: 'endDate' },
-            { title: 'Abgaben', field: 'submissions' }
+            { title: 'Titel', field: 'documentRefId' },
+            { title: 'Klasse', field: 'groups' }
           ]}
-          data={this.state.data}
+          data={this.state.homeworkEntryList}
           editable={{
             onRowAdd: newData =>
               new Promise((resolve, reject) => {

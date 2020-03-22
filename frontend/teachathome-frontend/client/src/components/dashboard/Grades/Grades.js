@@ -26,7 +26,9 @@ export default class Grades extends Component {
       console.log(group);
       return (
         <div className="Entry" key={key}>
-          <Link to={{ pathname: '/classroom', state: {groupName: group.name} } }>
+          <Link
+            to={{ pathname: '/classroom', state: { groupName: group.name } }}
+          >
             <img src={ornament} className="Icon" />
             <div className="Label">{group.name}</div>
           </Link>
@@ -44,7 +46,7 @@ export default class Grades extends Component {
         <div className="Headline">
           <span>Klassen</span>
         </div>
-        <div className="Entries">{this.renderGroups()}</div>
+        <div className="EntriesGrades">{this.renderGroups()}</div>
       </div>
     );
   }

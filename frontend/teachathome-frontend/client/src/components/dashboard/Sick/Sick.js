@@ -33,7 +33,7 @@ export default class Grades extends Component {
 
   render() {
     return (
-      <div style={containerStyle}>
+      <div id="SickContainer">
         <svg className="Shadow" />
         <div className="Headline">
           <span>Kranke Schüler</span>
@@ -43,11 +43,3 @@ export default class Grades extends Component {
     );
   }
 }
-
-const containerStyle = {
-  position: 'relative',
-  height: 'auto',
-  margin: 32,
-  flex: 1,
-  overflow: 'visible'
-};

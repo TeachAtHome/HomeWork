@@ -1,7 +1,6 @@
 class Document {
-    constructor(documentRefId, content, groups) {
+    constructor(documentRefId, groups) {
         this.documentRefId = documentRefId;
-        this.content = content;
         this.groups = groups;
     }
     toString() {

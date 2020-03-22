@@ -5,7 +5,8 @@ class PersonEndpoints {
             const firstname = req.params.firstname
             const lastname = req.params.lastname
             const email = req.params.email
-            const person = await req.services.personService.getStudent(id, firstname, lastname.email)
+            const sick = req.params.sick
+            const person = await req.services.personService.getStudent(id, firstname, lastname, email, sick)
 
             if (person) {
                 res.json(person)

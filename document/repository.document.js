@@ -20,7 +20,11 @@ class DocumentRepository {
     async getAllDocuments() {
         var documents = await this.db.getAllCollectionEntries(this.collectionName);
         documents = documents.map(DocumentRepository.convertNoSqlToGroups);
-        return documents;
+        const documentRefIds = documents.reduce((ids, document) => {
+            ids.push(document.documentRefId);
+            return ids;
+        }, []);
+        return documentRefIds;
     }
 
     async getAllDocumentsByGroup(group) {

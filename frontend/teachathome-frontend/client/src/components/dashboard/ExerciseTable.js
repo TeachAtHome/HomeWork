@@ -89,11 +89,8 @@ export default class App extends Component {
           icons={tableIcons}
           title={this.props.tableName}
           columns={[
-            { title: 'Titel', field: 'title' },
-            { title: 'Klasse', field: 'group' },
-            { title: 'Anfangsdatum', field: 'startDate' },
-            { title: 'Enddatum', field: 'endDate' },
-            { title: 'Abgaben', field: 'submissions' }
+            { title: 'Titel', field: 'documentRefId' },
+            { title: 'Klasse', field: 'groups' }
           ]}
           data={this.state.homeworkEntryList}
           editable={{

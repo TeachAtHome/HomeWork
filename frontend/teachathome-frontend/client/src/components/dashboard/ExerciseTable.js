@@ -57,17 +57,17 @@ export default class App extends Component {
   componentDidMount() {
     if(this.groupID){
       this.callGetAllEntriesFromGroupApi()
-        .then(res => this.setState({ homeworkEntries: res }))
+        .then(res => this.setState({ homeworkEntryList: res }))
         .catch(err => console.log(err));
       } else {
         this.callGetAllEntriesApi()
-          .then(res => this.setState({ homeworkEntries: res }))
+          .then(res => this.setState({ homeworkEntryList: res }))
           .catch(err => console.log(err));
       }
   }
 
   callGetAllEntriesFromGroupApi = async () => {
-    const response = await fetch("/api/group/" + this.groupID);
+    const response = await fetch("/api/document?group=" + this.groupName);
     const homeworkEntries = await response.json();
     if (response.status !== 200) throw Error(homeworkEntries.message);
     return homeworkEntries;
@@ -76,13 +76,11 @@ export default class App extends Component {
   callGetAllEntriesApi = async () => {
     const response = await fetch("/api/document");
     const homeworkEntries = await response.json();
-    console.log("Entries", homeworkEntries);
     if (response.status !== 200) throw Error(homeworkEntries.message);
     return homeworkEntries;
   };
 
   render() {
-    console.log("test", this.state.homeworkEntryList);
     return (
       <div style={tableStyle}>
         <MaterialTable

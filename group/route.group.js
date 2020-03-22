@@ -71,9 +71,9 @@ class GroupEndpoints {
     postGroup = async (req, res, next) => {
         try {
             var groupName = req.body.name;
-            var studentIds = req.body.studentIds;
+            var personIds = req.body.personIds;
             try {
-                await req.services.groupService.addGroup(groupName, studentIds);
+                await req.services.groupService.addGroup(groupName, personIds);
                 res.sendStatus(201);
             } catch (error) {
                 res.send(error).status(400);

@@ -1,11 +1,20 @@
 class Person {
-    constructor(id, name, email) {
-        this.id = id;
-        this.name = name;
+    constructor(_id, firstname, lastname, email, role) {
+        this._id = _id;
+        this.firstname = firstname;
+        this.lastname = lastname
         this.email = email;
+        this.role = role;
     }
+
+    static ROLES = {
+        TEACHER: 'teacher',
+        STUDENT: 'student',
+        PARENT: 'parent',
+    }
+
     toString() {
-        return "[PERSON][id]=" + this.id + ", [name]=" + this.name + ', [email]=' + this.email;
+        return '[PERSON][_id]='+_id+'[firstname]=' + this.firstname + '[lastname]=' + this.lastname + ', [email]=' + this.email + ', [role]=' + this.role;
     }
 }
 

@@ -1,8 +1,11 @@
 class PersonEndpoints {
     getStudent = async (req, res, next) => {
         try {
-            const personId = req.params.id
-            const person = await req.services.personService.getPerson(personId)
+            const id = req.params.id
+            const firstname = req.params.firstname
+            const lastname = req.params.lastname
+            const email = req.params.email
+            const person = await req.services.personService.getStudent(id, firstname, lastname. email)
 
             if (person) {
                 res.json(person)
@@ -15,9 +18,9 @@ class PersonEndpoints {
             next(err)
         }
     }
-    getAllStudent = async (req, res, next) => {
+    getAllStudents = async (req, res, next) => {
         try {
-            const persons = await req.services.personService.listAllPersons();
+            const persons = await req.services.personService.listAllStudents();
             if (persons) {
                 res.json(persons)
             } else {
@@ -31,13 +34,15 @@ class PersonEndpoints {
     }
     postStudent = async (req, res, next) => {
         try {
-            const personId = req.body.id;
-            const personName = req.body.name;
-            const personEmail = req.body.email;
+            const firstname = req.body.firstname;
+            const lastname = req.body.lastname;
+            const email = req.body.email;
 
             try {
-                await req.services.personService.addPerson(personId, personName, personEmail);
-                res.sendStatus(201);
+                const id = await req.services.personService.addStudent(firstname, lastname, email);
+                res.status(201).json({
+                    id: id
+                });
             } catch (error) {
                 res.send(error).status(400);
             }

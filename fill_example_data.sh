@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 api_url="http://localhost:8080/api"
 
@@ -25,23 +25,32 @@ function addStudent {
 
 function addGroup {
     name="$1";shift
-    studentIds="$1";shift
+    personIds="$1";shift
 
-    post "{ \"name\": \"$name\", \"studentIds\": [$studentIds] }" 'group'
-
+    post "{ \"name\": \"$name\", \"personIds\": [$personIds] }" 'group'
 }
 
-addStudent '{"id": "s1", "name": "MC Hammer", "email": "hammer@time.com"}'
-addStudent '{"id": "s2", "name": "Sledge Hammer", "email": "hammering@time.com"}'
-addStudent '{"id": "s3", "name": "John Travolta", "email": "johnny@hollywood.com"}'
-addStudent '{"id": "s4", "name": "Mr. T", "email": "t@team.com"}'
-addStudent '{"id": "s5", "name": "Dr. No", "email": "dr@bond.com"}'
+function getStudentID {
+    studentData="$1"
+    echo $studentData | cut -d '"' -f4
+}
+
+mc_data=$(addStudent '{"firstname": "MC", "lastname": "Hammer", "email": "hammer@time.com"}')
+mc_id=$(getStudentID $mc_data);
+sledge_data=$(addStudent '{"firstname": "Sledge", "lastname": "Hammer", "email": "hammering@time.com"}')
+sledge_id=$(getStudentID $sledge_data);
+john_data=$(addStudent '{"firstname": "John", "lastname": "Travolta", "email": "johnny@hollywood.com"}')
+john_id=$(getStudentID $john_data);
+mr_data=$(addStudent '{"firstname": "Mr.", "lastname": "T", "email": "t@team.com"}')
+mr_id=$(getStudentID $mr_data);
+dr_data=$(addStudent '{"firstname": "Dr.", "lastname": "No", "email": "dr@bond.com"}')
+dr_id=$(getStudentID $dr_data);
 
 echo "show student state"
 get 'student'
 
-addGroup "3B-Mathe" '"s1", "s3"'
-addGroup "3B-Englisch" '"s1", "s2", "s5"'
+addGroup "3B-Mathe" "\"${mc_id}\", \"${sledge_id}\""
+addGroup "3B-Englisch" "\"${john_id}\", \"${mr_id}\", \"${dr_id}\""
 
 echo "show group state"
 get 'group'

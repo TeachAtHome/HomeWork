@@ -32,8 +32,14 @@ class DocumentEndpoints {
         }
     }
     getAllDocuments = async (req, res, next) => {
+        const group = req.query.group;
         try {
-            const documents = await req.services.documentService.getAllDocuments();
+            var documents;
+            if(group) {
+                documents = await req.services.documentService.getAllDocumentsByGroup(group);
+            } else {
+                documents = await req.services.documentService.getAllDocuments();
+            }
             res.status(200).json(documents);
         } catch (error) {
             res.status(404).send(error);

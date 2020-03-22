@@ -11,17 +11,7 @@ class DocumentRepository {
             console.log("Warning: Found multiple persons with the same id! " + id);
         }
         if (result.length >= 1) {
-            const document = result[0];
-            const groupReducer = (accumulator, currentValue) => {
-                if (currentValue != 'documentRefId') {
-                    accumulator.push(currentValue);
-                    delete document[currentValue];
-                }
-                return accumulator;
-            }
-            delete document._id
-            document.groups = Object.keys(document).reduce(groupReducer, []);
-            return document;
+            return DocumentRepository.convertNoSqlToGroups(result[0]);
         } else {
             return null;
         }
@@ -29,27 +19,25 @@ class DocumentRepository {
 
     async getAllDocuments() {
         var documents = await this.db.getAllCollectionEntries(this.collectionName);
-        documents = documents.map(document => {
-            const groupReducer = (accumulator, currentValue) => {
-                if (currentValue != 'documentRefId') {
-                    accumulator.push(currentValue);
-                    delete document[currentValue];
-                }
-                return accumulator;
-            }
-            delete document._id
-            document.groups = Object.keys(document).reduce(groupReducer, []);
-            return document;
-        });
+        documents = documents.map(DocumentRepository.convertNoSqlToGroups);
         return documents;
     }
 
+    async getAllDocumentsByGroup(group) {
+        const query = {};
+        query[group] = true;
+        var documents = await this.db.getCollectionEntries(this.collectionName, query);
+        documents = documents.map(DocumentRepository.convertNoSqlToGroups);
+        const documentRefIds = documents.reduce((ids, document) => {
+            ids.push(document.documentRefId);
+            return ids;
+        }, []);
+        return documentRefIds;
+    }
+
+
     async addDocument(document) {
-        for (const groupIdx in document.groups) {
-            const groupName = document.groups[groupIdx];
-            document[groupName] = true;
-        }
-        delete document.groups;
+        document = DocumentRepository.convertGroupsToNoSql(document);
         await this.db.addObject(document, this.collectionName);
     }
 
@@ -58,12 +46,30 @@ class DocumentRepository {
     }
 
     async updateDocument(document) {
+        document = DocumentRepository.convertGroupsToNoSql(document);
+        await this.db.updateCollectionEntry(this.collectionName, { id: document.id }, document);
+    }
+
+    static convertNoSqlToGroups(document) {
+        const groupReducer = (accumulator, currentValue) => {
+            if (currentValue != 'documentRefId') {
+                accumulator.push(currentValue);
+                delete document[currentValue];
+            }
+            return accumulator;
+        }
+        delete document._id
+        document.groups = Object.keys(document).reduce(groupReducer, []);
+        return document;
+    }
+
+    static convertGroupsToNoSql(document){
         for (const groupIdx in document.groups) {
             const groupName = document.groups[groupIdx];
             document[groupName] = true;
         }
         delete document.groups;
-        await this.db.updateCollectionEntry(this.collectionName, { id: document.id }, document);
+        return document;
     }
 }
 

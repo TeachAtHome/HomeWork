@@ -1,13 +1,9 @@
 const Person = require('./model.person');
+const uuid = require('uuid');
 
 class PersonService {
     constructor(personRepository) {
         this.personRepository = personRepository
-    }
-
-    async getPerson(id) {
-        console.log('PersonService|getPerson: ' + id);
-        return await this.personRepository.getPersonById(id);
     }
 
     async listAllPersons() {
@@ -22,9 +18,27 @@ class PersonService {
             console.log('PersonService|addPerson|Person: ' + person.toString());
             console.log('PersonService|addPerson|callRepository');
             return await this.personRepository.addPerson(person);
-        } 
+        }
         console.log('PersonService|addPerson|throwError');
         throw "Person is already existing"
+    }
+
+    async getStudent(id, firstname, lastname, email) {
+        const student = new Person(id, firstname, lastname, email, Person.ROLES.STUDENT);
+        return await this.personRepository.getPerson(student);
+    }
+
+    async addStudent(firstname, lastname, email) {
+        const student = new Person(uuid.v4(), firstname, lastname, email, Person.ROLES.STUDENT);
+        const personExists = await this.personRepository.checkPersonExists(student)
+        if (!personExists) {
+            return await this.personRepository.addPerson(student);
+        }
+        throw "Student is already existing"
+    }
+
+    async listAllStudents() {
+        return await this.personRepository.getAllByRole(Person.ROLES.STUDENT);
     }
 }
 

@@ -28,7 +28,7 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.Entries {
+.EntriesGrades {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

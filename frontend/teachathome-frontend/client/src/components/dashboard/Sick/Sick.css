@@ -1,6 +1,6 @@
-.SickContainer {
+#SickContainer {
   position: relative;
-  flex-grow: 1;
+  flex: 1;
   height: auto;
   overflow: visible;
   margin: 32px;

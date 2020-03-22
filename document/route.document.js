@@ -50,10 +50,7 @@ class DocumentEndpoints {
     deleteDocument = async (req, res, next) => {
       const documentRefId = req.params.documentRefId;
       try {
-          console.log(documentRefId);
-          const document = await req.services.documentService.deleteDocument(documentRefId);
-          console.log(document);
-          console.log("TEST");
+          await req.services.documentService.deleteDocument(documentRefId);
           if (document)
               throw `Document with id '${documentRefId}' does not exist.`
           res.status(200).json(document);

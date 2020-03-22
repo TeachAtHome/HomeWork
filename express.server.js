@@ -97,7 +97,6 @@ class ExpressServer {
         server.get('/api/storage/document/:documentRefId', noCache, storageRoutes.getDocument);
 
     }
-
 }
 
 module.exports = ExpressServer;

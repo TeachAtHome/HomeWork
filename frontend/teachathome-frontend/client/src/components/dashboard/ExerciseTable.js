@@ -80,6 +80,12 @@ export default class App extends Component {
     return homeworkEntries;
   };
 
+  handleSubmit = async entry => {
+    const response = await fetch("/api/document/deleteDocument/" + entry.documentRefId, {
+      method: 'DELETE',
+      }).then(res => res.text()).then(res => console.log(res));
+  };
+
   render() {
     return (
       <div style={tableStyle}>
@@ -119,10 +125,14 @@ export default class App extends Component {
               new Promise((resolve, reject) => {
                 setTimeout(() => {
                   {
-                    /* let data = this.state.data;
-                            const index = data.indexOf(oldData);
-                            data.splice(index, 1);
-                            this.setState({ data }, () => resolve()); */
+                    let data = this.state.homeworkEntryList;
+                    const index = data.indexOf(oldData);
+                    let entry = this.state.homeworkEntryList[index];
+                    data.splice(index, 1);
+                    console.log(entry);
+                    console.log(index);
+                    this.handleSubmit(entry);
+                    this.setState({ data }, () => resolve());
                   }
                   resolve();
                 }, 1000);

@@ -10,8 +10,8 @@ class GroupEndpoints {
 
             const name = group.name;
             var students = [];
-            for (var i = 0; i < group.studentIds.length; i++) {
-                const student = await req.services.personService.getPerson(group.studentIds[i]);
+            for (var i = 0; i < group.personIds.length; i++) {
+                const student = await req.services.personService.getPerson(group.personIds[i]);
                 students.push(student);
             }
 

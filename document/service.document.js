@@ -9,10 +9,10 @@ class DocumentService {
         var document = await this.documentRepository.getDocumentById(documentRefId);
         if(!document) {
             document = new Document(documentRefId, groups);
-            await this.documentRepository.addDocument(document);
+            return await this.documentRepository.addDocument(document);
         }
         document.groups = document.groups.concat(groups);
-        await this.documentRepository.updateDocument(document);
+        return await this.documentRepository.updateDocument(document);
     }
 
     async getDocument(documentRefId) {

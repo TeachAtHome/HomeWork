@@ -20,11 +20,12 @@ class DocumentRepository {
     async getAllDocuments() {
         var documents = await this.db.getAllCollectionEntries(this.collectionName);
         documents = documents.map(DocumentRepository.convertNoSqlToGroups);
-        const documentRefIds = documents.reduce((ids, document) => {
-            ids.push(document.documentRefId);
-            return ids;
-        }, []);
-        return documentRefIds;
+        // const documentRefIds = documents.reduce((ids, document) => {
+        //     ids.push(document.documentRefId);
+        //     return ids;
+        // }, []);
+        // return documentRefIds;
+        return documents;
     }
 
     async getAllDocumentsByGroup(group) {
@@ -32,11 +33,12 @@ class DocumentRepository {
         query[group] = true;
         var documents = await this.db.getCollectionEntries(this.collectionName, query);
         documents = documents.map(DocumentRepository.convertNoSqlToGroups);
-        const documentRefIds = documents.reduce((ids, document) => {
-            ids.push(document.documentRefId);
-            return ids;
-        }, []);
-        return documentRefIds;
+        // const documentRefIds = documents.reduce((ids, document) => {
+        //     ids.push(document.documentRefId);
+        //     return ids;
+        // }, []);
+        // return documentRefIds;
+        return documents;
     }
 
 

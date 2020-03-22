@@ -34,9 +34,7 @@ class StorageEndpoints {
                 const documentRefId = req.body.documentRefId ? req.body.documentRefId : uuid.v4();
                 const documentPath = await req.services.storageService.createTempFile(documentRefId, req.body.content);
                 await req.services.storageService.uploadDocument(documentRefId, documentPath, 'application/json');
-                res.status(200).json({
-                    status: true,
-                    message: 'Content is uploaded',
+                res.status(201).json({
                     id: documentRefId
                 });
             }

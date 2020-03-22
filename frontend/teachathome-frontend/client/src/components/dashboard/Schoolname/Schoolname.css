@@ -35,3 +35,15 @@
   color: rgba(0, 0, 0, 0.871);
   letter-spacing: 0.12899999618530272px;
 }
+
+#Logo {
+  position: left;
+  height: 100px;
+  width: 100px;
+}
+
+#LogoText {
+  position: left;
+  height: 49px;
+  width: 163px;
+}

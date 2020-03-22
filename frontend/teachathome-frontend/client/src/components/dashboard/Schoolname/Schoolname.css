@@ -1,6 +1,5 @@
 .Container {
   position: relative;
-  width: 80%;
   height: 120px;
   overflow: visible;
   flex-direction: column;

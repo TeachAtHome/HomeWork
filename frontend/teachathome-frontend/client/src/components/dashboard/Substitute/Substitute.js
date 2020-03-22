@@ -4,7 +4,7 @@ import './Substitute.css';
 export default class Substitute extends Component {
   render() {
     return (
-      <div id="Container">
+      <div style={containerStyle}>
         <svg className="Shadow" />
         <div className="Headline">
           <span>Vertretungsstunden</span>
@@ -28,3 +28,11 @@ export default class Substitute extends Component {
     );
   }
 }
+
+const containerStyle = {
+  position: 'relative',
+  height: 'auto',
+  margin: 32,
+  flex: 1,
+  overflow: 'visible'
+};

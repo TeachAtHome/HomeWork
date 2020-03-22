@@ -46,7 +46,7 @@ const tableIcons = {
 export default class App extends Component {
   render() {
     return (
-      <div style={{ width: '80%' }}>
+      <div style={tableStyle}>
         <MaterialTable
           icons={tableIcons}
           title={this.props.tableName}
@@ -108,3 +108,7 @@ export default class App extends Component {
     );
   }
 }
+
+const tableStyle = {
+  margin: 32
+};

@@ -33,6 +33,12 @@ class Application {
         const gRepository = new GroupRepository(db);
         const gService = new GroupService(gRepository)
 
+        // Document service
+        const DocumentService = require('./document/service.document');
+        const DocumentRepository = require('./document/repository.document');
+        const dRepository = new DocumentRepository(db);
+        const dService = new DocumentService(dRepository);
+
         // Storage service
         const StorageService = require('./storage/service.storage');
         const sService = new StorageService();
@@ -41,6 +47,7 @@ class Application {
         const requestServices = {
             personService: pService,
             groupService: gService,
+            documentService: dService,
             storageService: sService
         };
 

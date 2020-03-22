@@ -1,6 +1,5 @@
-#Container {
+#NameContainer {
   position: relative;
-  width: 80%;
   height: 120px;
   overflow: visible;
   flex-direction: column;
@@ -13,12 +12,13 @@
 
 #Titel {
   position: relative;
+  margin-top: 32px;
   overflow: visible;
   text-align: center;
   font-family: Roboto;
   font-style: normal;
   font-weight: lighter;
-  font-size: 60px;
+  font-size: 40px;
   color: rgba(0, 0, 0, 0.871);
   letter-spacing: -0.08800000190734864px;
 }
@@ -34,4 +34,18 @@
   font-size: 20px;
   color: rgba(0, 0, 0, 0.871);
   letter-spacing: 0.12899999618530272px;
+}
+
+#Logo {
+  position: left;
+  margin-left: 32px;
+  margin-top: 16px;
+  height: 100px;
+  width: 100px;
+}
+
+#LogoText {
+  position: left;
+  height: 49px;
+  width: 163px;
 }

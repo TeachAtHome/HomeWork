@@ -21,11 +21,13 @@ export default class Grades extends Component {
 
   renderStudents = () => {
     const renderedStudents = this.state.students.map((student, key) => {
-      return (
-        <div key={key} className="Student">
-          <span>{student.name}</span>
-        </div>
-      );
+      if(student.sick == true){
+        return (
+          <div key={key} className="Student">
+            <span>{student.name}</span>
+          </div>
+        );
+      }
     });
 
     return renderedStudents;
@@ -33,12 +35,12 @@ export default class Grades extends Component {
 
   render() {
     return (
-      <div id="Container">
+      <div id="SickContainer">
         <svg className="Shadow" />
         <div className="Headline">
           <span>Kranke Schüler</span>
         </div>
-        {this.renderStudents()}
+        <div id="Entries">{this.renderStudents()}</div>
       </div>
     );
   }

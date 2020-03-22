@@ -35,15 +35,15 @@ function getStudentID {
     echo $studentData | cut -d '"' -f4
 }
 
-mc_data=$(addStudent '{"firstname": "MC", "lastname": "Hammer", "email": "hammer@time.com"}')
+mc_data=$(addStudent '{"firstname": "MC", "lastname": "Hammer", "email": "hammer@time.com", "sick": false}')
 mc_id=$(getStudentID $mc_data);
-sledge_data=$(addStudent '{"firstname": "Sledge", "lastname": "Hammer", "email": "hammering@time.com"}')
+sledge_data=$(addStudent '{"firstname": "Sledge", "lastname": "Hammer", "email": "hammering@time.com", "sick": true}')
 sledge_id=$(getStudentID $sledge_data);
-john_data=$(addStudent '{"firstname": "John", "lastname": "Travolta", "email": "johnny@hollywood.com"}')
+john_data=$(addStudent '{"firstname": "John", "lastname": "Travolta", "email": "johnny@hollywood.com", "sick": false}')
 john_id=$(getStudentID $john_data);
-mr_data=$(addStudent '{"firstname": "Mr.", "lastname": "T", "email": "t@team.com"}')
+mr_data=$(addStudent '{"firstname": "Mr.", "lastname": "T", "email": "t@team.com", "sick": false}')
 mr_id=$(getStudentID $mr_data);
-dr_data=$(addStudent '{"firstname": "Dr.", "lastname": "No", "email": "dr@bond.com"}')
+dr_data=$(addStudent '{"firstname": "Dr.", "lastname": "No", "email": "dr@bond.com", "sick": false}')
 dr_id=$(getStudentID $dr_data);
 
 echo "show student state"

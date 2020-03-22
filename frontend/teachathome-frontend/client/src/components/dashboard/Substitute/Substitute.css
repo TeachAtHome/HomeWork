@@ -1,6 +1,7 @@
-.Container {
+.SubstituteContainer {
   position: relative;
-  width: 80%;
+  flex-grow: 1;
+  height: auto;
   overflow: visible;
   margin: 32px;
 }

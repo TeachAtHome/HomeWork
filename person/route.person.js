@@ -5,7 +5,7 @@ class PersonEndpoints {
             const firstname = req.params.firstname
             const lastname = req.params.lastname
             const email = req.params.email
-            const person = await req.services.personService.getStudent(id, firstname, lastname. email)
+            const person = await req.services.personService.getStudent(id, firstname, lastname.email)
 
             if (person) {
                 res.json(person)
@@ -37,9 +37,10 @@ class PersonEndpoints {
             const firstname = req.body.firstname;
             const lastname = req.body.lastname;
             const email = req.body.email;
+            const sick = req.body.sick;
 
             try {
-                const id = await req.services.personService.addStudent(firstname, lastname, email);
+                const id = await req.services.personService.addStudent(firstname, lastname, email, sick);
                 res.status(201).json({
                     id: id
                 });

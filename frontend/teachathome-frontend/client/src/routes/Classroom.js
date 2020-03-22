@@ -4,6 +4,7 @@ import ClassroomList from '../components/classroom/Classroom';
 
 class Classroom extends Component {
   render() {
+    console.log(this.props.propDummy);
     return (
       <div>
         <div style={containerStyle}>

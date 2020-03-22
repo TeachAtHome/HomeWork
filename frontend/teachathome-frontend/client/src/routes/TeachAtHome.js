@@ -3,6 +3,7 @@ import Schoolname from '../components/dashboard/Schoolname/Schoolname';
 import Substitute from '../components/dashboard/Substitute/Substitute';
 import Sick from '../components/dashboard/Sick/Sick';
 import Grades from '../components/dashboard/Grades/Grades';
+import ExerciseTable from '../components/dashboard/ExerciseTable';
 
 class TeachAtHome extends Component {
   render() {
@@ -12,6 +13,7 @@ class TeachAtHome extends Component {
         <Substitute />
         <Sick />
         <Grades />
+        <ExerciseTable />
       </div>
     );
   }

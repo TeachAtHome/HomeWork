@@ -8,8 +8,8 @@ import ExerciseTable from '../components/dashboard/ExerciseTable';
 class TeachAtHome extends Component {
   render() {
     return (
-      <div style={containerStyle}>
-        <div style={marginContainer}>
+      <div style={paddingContainer}>
+        <div style={containerStyle}>
           <Schoolname />
           <div style={newsStyle}>
             <Substitute />
@@ -25,12 +25,12 @@ class TeachAtHome extends Component {
   }
 }
 
-const containerStyle = {
+const paddingContainer = {
   paddingLeft: 120,
   paddingRight: 120
 };
 
-const marginContainer = {
+const containerStyle = {
   justifyContent: 'center',
   alignItems: 'stretch',
   display: 'flex',

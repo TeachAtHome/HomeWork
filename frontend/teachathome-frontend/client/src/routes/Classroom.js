@@ -5,23 +5,30 @@ import ClassroomList from '../components/classroom/Classroom';
 class Classroom extends Component {
   render() {
     return (
-      <div>
+      <div style={paddingContainer}>
         <div style={containerStyle}>
           <Schoolname />
-        </div>
-        <div style={divClassroom}>
-          <ClassroomList groupName={this.props.location.state.groupName} />
+          <div style={divClassroom}>
+            <ClassroomList groupName={this.props.location.state.groupName} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
+const paddingContainer = {
+  paddingLeft: 120,
+  paddingRight: 120
+};
+
 const containerStyle = {
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'stretch',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  marginLeft: '48',
+  marginRight: '48'
 };
 
 const divClassroom = {

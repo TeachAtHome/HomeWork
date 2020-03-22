@@ -6,6 +6,7 @@ export default class Classroom extends Component {
   constructor(props) {
     super(props);
     console.log('test', this.props);
+    this.group = this.props.group;
     this.groupName = this.props.group.name;
   }
 
@@ -58,7 +59,7 @@ export default class Classroom extends Component {
             style={{ textDecoration: 'none' }}
             to={{
               pathname: '/editor',
-              state: { groupName: this.groupName }
+              state: { group: this.group }
             }}
           >
             Neue Hausaufgabe erstellen

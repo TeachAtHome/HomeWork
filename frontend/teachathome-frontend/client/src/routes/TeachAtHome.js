@@ -16,9 +16,9 @@ class TeachAtHome extends Component {
             <Sick />
           </div>
           <Grades />
-          <ExerciseTable tableName={'Offene Aufgaben'} />
-          <ExerciseTable tableName={'Geschlossene Aufgaben'} />
-          <ExerciseTable tableName={'Archivierte Aufgaben'} />
+          <ExerciseTable tableName={'Alle offenen Aufgaben'} />
+          <ExerciseTable tableName={'Alle geschlossenen Aufgaben'} />
+          <ExerciseTable tableName={'Alle archivierten Aufgaben'} />
         </div>
       </div>
     );

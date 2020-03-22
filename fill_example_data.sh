@@ -31,11 +31,11 @@ function addGroup {
 
 }
 
-addStudent '{"id": "s1", "name": "MC Hammer", "email": "hammer@time.com"}'
-addStudent '{"id": "s2", "name": "Sledge Hammer", "email": "hammering@time.com"}'
-addStudent '{"id": "s3", "name": "John Travolta", "email": "johnny@hollywood.com"}'
-addStudent '{"id": "s4", "name": "Mr. T", "email": "t@team.com"}'
-addStudent '{"id": "s5", "name": "Dr. No", "email": "dr@bond.com"}'
+addStudent '{"id": "s1", "name": "MC Hammer", "email": "hammer@time.com", "sick": false}'
+addStudent '{"id": "s2", "name": "Sledge Hammer", "email": "hammering@time.com", "sick": true}'
+addStudent '{"id": "s3", "name": "John Travolta", "email": "johnny@hollywood.com", "sick": false}'
+addStudent '{"id": "s4", "name": "Mr. T", "email": "t@team.com", "sick": false}'
+addStudent '{"id": "s5", "name": "Dr. No", "email": "dr@bond.com", "sick": true}'
 
 echo "show student state"
 get 'student'

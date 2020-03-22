@@ -15,14 +15,14 @@ class PersonService {
         return await this.personRepository.getAll();
     }
 
-    async addPerson(id, name, email) {
+    async addPerson(id, name, email, sick) {
         console.log('PersonService|addPerson: ' + id);
         if (await this.getPerson(id) == null) {
-            const person = new Person(id, name, email);
+            const person = new Person(id, name, email, sick);
             console.log('PersonService|addPerson|Person: ' + person.toString());
             console.log('PersonService|addPerson|callRepository');
             return await this.personRepository.addPerson(person);
-        } 
+        }
         console.log('PersonService|addPerson|throwError');
         throw "Person is already existing"
     }

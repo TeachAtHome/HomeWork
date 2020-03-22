@@ -4,11 +4,11 @@ import './Schoolname.css';
 export default class Schoolname extends Component {
   render() {
     return (
-      <div id="Container">
-        <div id="Titel">
+      <div className="Container">
+        <div className="Titel">
           <span>Geschwister-Scholl-Gymnasium</span>
         </div>
-        <div id="Year">
+        <div className="Year">
           <span>Schuljahr 2020/21</span>
         </div>
       </div>

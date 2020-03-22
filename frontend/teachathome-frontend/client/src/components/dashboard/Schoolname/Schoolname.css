@@ -1,4 +1,4 @@
-#Container {
+.Container {
   position: relative;
   width: 80%;
   height: 120px;
@@ -11,7 +11,7 @@
   margin-bottom: 96px;
 }
 
-#Titel {
+.Titel {
   position: relative;
   overflow: visible;
   text-align: center;
@@ -23,7 +23,7 @@
   letter-spacing: -0.08800000190734864px;
 }
 
-#Year {
+.Year {
   position: relative;
   margin-top: 16px;
   white-space: nowrap;

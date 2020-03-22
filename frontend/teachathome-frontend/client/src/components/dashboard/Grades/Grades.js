@@ -27,8 +27,8 @@ export default class Grades extends Component {
         <div className="Entry" key={key}>
           //need to be refactored / value needs to be send to /classroom page
           <a href="/classroom">
-          <img src={ornament} className="Icon" />
-          <div className="Label">{group.name}</div>
+            <img src={ornament} className="Icon" />
+            <div className="Label">{group.name}</div>
           </a>
         </div>
       );
@@ -39,7 +39,7 @@ export default class Grades extends Component {
 
   render() {
     return (
-      <div id="Container">
+      <div className="Container">
         <svg className="Shadow"></svg>
         <div className="Headline">
           <span>Klassen</span>

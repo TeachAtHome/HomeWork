@@ -47,6 +47,22 @@ class DocumentEndpoints {
             next(error)
         }
     }
+    deleteDocument = async (req, res, next) => {
+      const documentRefId = req.params.documentRefId;
+      try {
+          console.log(documentRefId);
+          const document = await req.services.documentService.deleteDocument(documentRefId);
+          console.log(document);
+          console.log("TEST");
+          if (document)
+              throw `Document with id '${documentRefId}' does not exist.`
+          res.status(200).json(document);
+      } catch (error) {
+          res.status(404).send(error);
+          console.log(error);
+          next(error)
+      }
+    }
 }
 
 module.exports = new DocumentEndpoints();

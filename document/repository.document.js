@@ -47,8 +47,8 @@ class DocumentRepository {
         await this.db.addObject(document, this.collectionName);
     }
 
-    async deleteDocument(document) {
-        await this.db.deleteCollectionEntry(this.collectionName, { id: document.id }, true);
+    async deleteDocument(documentRefId) {
+        await this.db.deleteCollectionEntry(this.collectionName, { id: documentRefId }, true);
     }
 
     async updateDocument(document) {

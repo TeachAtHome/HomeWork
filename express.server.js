@@ -87,6 +87,7 @@ class ExpressServer {
         server.post('/api/document', documentRoutes.postLinkDocumentToGroups);
         server.get('/api/document/:documentRefId', documentRoutes.getDocument);
         server.get('/api/document', documentRoutes.getAllDocuments);
+        server.delete('/api/document/deleteDocument/:documentRefId', documentRoutes.deleteDocument);
 
         // Storage
         const storageRoutes = require('./storage/route.storage');

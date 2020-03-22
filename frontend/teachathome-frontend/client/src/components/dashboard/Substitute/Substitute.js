@@ -11,17 +11,17 @@ export default class Substitute extends Component {
         </div>
         <div className="Substitute">
           <span>
-            Freitag, 18.03.2020 - 3/4 Stunde, Klasse 8b für Frau Meyer
+            Mittwoch, 18.03.2020 - 3/4 Stunde, Klasse 8b für Frau Meyer
           </span>
         </div>
         <div className="Substitute">
           <span>
-            Freitag, 18.03.2020 - 5/6 Stunde, Klasse 8b für Frau Meyer
+            Mittwoch, 18.03.2020 - 5/6 Stunde, Klasse 8b für Frau Meyer
           </span>
         </div>
         <div className="Substitute">
           <span>
-            Freitag, 18.03.2020 - 5/6 Stunde, Klasse 8b für Frau Meyer
+            Freitag, 20.03.2020 - 5/6 Stunde, Klasse 7a für Herr Sanders
           </span>
         </div>
       </div>

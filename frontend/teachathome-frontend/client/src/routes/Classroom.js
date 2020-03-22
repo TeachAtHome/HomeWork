@@ -10,7 +10,7 @@ class Classroom extends Component {
           <Schoolname />
         </div>
         <div style={divClassroom}>
-          <ClassroomList />
+          <ClassroomList groupName={this.props.location.state.groupName} />
         </div>
       </div>
     );

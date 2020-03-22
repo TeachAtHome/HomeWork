@@ -25,8 +25,11 @@ export default class Grades extends Component {
       console.log(group);
       return (
         <div className="Entry" key={key}>
+          //need to be refactored / value needs to be send to /classroom page
+          <a href="/classroom">
           <img src={ornament} className="Icon" />
           <div className="Label">{group.name}</div>
+          </a>
         </div>
       );
     });

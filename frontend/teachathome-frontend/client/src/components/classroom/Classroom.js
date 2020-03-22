@@ -49,7 +49,7 @@ export default class Classroom extends Component {
         <div className="ClassroomContainer">
           <svg className="Shadow" />
           <div className="HeadlineClassroom">
-            <span>Schüler der {this.state.classroom.name}</span>
+            <span>Schüler der {this.groupName}</span>
           </div>
           <div id="Entries">{this.renderStudents()}</div>
         </div>
@@ -58,7 +58,7 @@ export default class Classroom extends Component {
             style={{ textDecoration: 'none' }}
             to={{
               pathname: '/editor',
-              state: { groupName: this.state.classroom.name }
+              state: { groupName: this.groupName }
             }}
           >
             Neue Hausaufgabe erstellen

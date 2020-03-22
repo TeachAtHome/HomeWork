@@ -49,21 +49,23 @@ export default class App extends Component {
       <div style={{ width: '80%' }}>
         <MaterialTable
           icons={tableIcons}
+          title={this.props.tableName}
           columns={[
             { title: 'Titel', field: 'title' },
             { title: 'Klasse', field: 'group' },
             { title: 'Anfangsdatum', field: 'startDate' },
-            { title: 'Enddatum', field: 'endDate' }
+            { title: 'Enddatum', field: 'endDate' },
+            { title: 'Abgaben', field: 'submissions' }
           ]}
           data={[
             {
               title: 'Bruchrechnung',
               group: '3B-Mathe',
               startDate: '12.03.2020, 15:30 Uhr',
-              endDate: '13.03.2020, 17:30 Uhr'
+              endDate: '13.03.2020, 17:30 Uhr',
+              submissions: '12/27'
             }
           ]}
-          title="Hausaufgaben"
           editable={{
             onRowAdd: newData =>
               new Promise((resolve, reject) => {

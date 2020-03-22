@@ -11,7 +11,7 @@ export default class Schoolname extends Component {
           <img id="Logo" src={logo} alt="Logo" />
           <img id="LogoText" src={logoText} alt="logoText" />
         </a>
-        <div id="Titel">
+        <div className="Titel">
           <span>Geschwister-Scholl-Gymnasium</span>
         </div>
         <div className="Year">

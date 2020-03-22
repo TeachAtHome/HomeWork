@@ -7,7 +7,7 @@ export default class Classroom extends Component {
 
   constructor(props) {
       super(props);
-      this.groupName = this.props.groupName;
+      this.groupName = this.props.group.name;
   }
 
   state = {

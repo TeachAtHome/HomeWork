@@ -26,9 +26,8 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "mongo-mock": "^4.0.0",
-    "mongodb": "^3.5.5"
-  },
-  "dependencies": {
+    "mongodb": "^3.5.5",
+    "uuid": "^7.0.2",
     "@material-ui/icons": "^4.9.1",
     "material-table": "^1.57.2"
   }

@@ -1,13 +1,19 @@
 const { Storage } = require('@google-cloud/storage');
+const fs = require('fs').promises;
+const path = require('path');
+const os = require('os');
 
 class StorageService {
     constructor() {
         this.storage = new Storage({ projectId: 'ninth-moment-271720', keyFilename: "key.json" });
+        this.bucketName = 'teachathome-document-bucket';
     }
 
-    async uploadDocument(document) {
+    async uploadDocument(name, documentPath, minetype) {
         console.log('StorageService|uploadDocument');
-        await this.storage.bucket('teachathome-document-bucket').upload(document.tempFilePath, {
+        await this.storage.bucket(this.bucketName).upload(documentPath, {
+            destination: name,
+            contentType: minetype,
             // Support for HTTP requests made with `Accept-Encoding: gzip`
             gzip: true,
             // By setting the option `destination`, you can change the name of the
@@ -19,7 +25,30 @@ class StorageService {
                 cacheControl: 'public, max-age=31536000',
             },
         });
-        console.log(`${document.tempFilePath} uploaded to teachathome-document-bucket.`);
+        await fs.unlink(documentPath);
+        console.log(`${documentPath} uploaded to ${this.bucketName}.`);
+    }
+
+    async createTempFile(name, content) {
+        const filePath = path.resolve(os.tmpdir(), name);
+        await fs.writeFile(filePath, content);
+        return filePath;
+    }
+
+    async downloadDocument(name) {
+        const destFilePath = path.resolve(os.tmpdir(), name);
+        const options = {
+            // The path to which the file should be downloaded, e.g. "./file.txt"
+            destination: destFilePath,
+        };
+
+        // Downloads the file
+        await this.storage.bucket(this.bucketName).file(name).download(options);
+
+        console.log(
+            `gs://${this.bucketName}/${name} downloaded to ${destFilePath}.`
+        );
+        return destFilePath;
     }
 
 }

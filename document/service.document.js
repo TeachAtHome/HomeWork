@@ -19,6 +19,10 @@ class DocumentService {
         return await this.documentRepository.getDocumentById(documentRefId);
     }
 
+    async deleteDocument(documentRefId) {
+      return await this.documentRepository.deleteDocument(documentRefId);
+    }
+
     async getAllDocuments() {
         return await this.documentRepository.getAllDocuments();
     }

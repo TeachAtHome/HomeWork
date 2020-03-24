@@ -28,9 +28,5 @@
     "mongo-mock": "^4.0.0",
     "mongodb": "^3.5.5",
     "uuid": "^7.0.2"
-  },
-  "dependencies": {
-    "@material-ui/icons": "^4.9.1",
-    "material-table": "^1.57.2"
   }
 }

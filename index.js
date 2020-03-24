@@ -1,4 +1,4 @@
-const Application = require('./application');
+const Application = require("./application")
 
 /**
  * Entrypoint for bootstrapping and starting the application.
@@ -7,5 +7,5 @@ const Application = require('./application');
  */
 
 Application.createApplication().then(() => {
-    console.info('The application was started! Kill it using Ctrl + C')
+  console.info("The application was started! Kill it using Ctrl + C")
 })

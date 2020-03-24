@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Schoolname from '../components/dashboard/Schoolname/Schoolname';
-import Substitute from '../components/dashboard/Substitute/Substitute';
-import Sick from '../components/dashboard/Sick/Sick';
-import Grades from '../components/dashboard/Grades/Grades';
+import Schoolname from '../components/dashboard/Schoolname';
+import Substitute from '../components/dashboard/Substitute';
+import Sick from '../components/dashboard/Sick';
+import Grades from '../components/dashboard/Grades';
 import ExerciseTable from '../components/dashboard/ExerciseTable';
 
 class TeachAtHome extends Component {

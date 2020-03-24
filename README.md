@@ -23,6 +23,14 @@ Lehrer können auf einer Plattform Hausaufgaben anmelden, die ab Freigabe durch 
 
 ### Docker
 
+Im Unterordner `api`
+
+Installieren der node_modules:
+`npm install`
+
+Starten des API Servers:
+`npm start`
+
 Das vollständige docker-compose setup erstellt ein node image und verwendet
 ein fertiges mongodb image.
 Es ist nicht notwendig das node image für die Entwicklung zu bauen.
@@ -50,5 +58,5 @@ Im Unterordner `frontend/teachathome-frontend/client`
 Installieren der node_modules:
 `npm install`
 
-Starten des Clients:
+Starten des Frontends:
 `npm start`

@@ -1,13 +1,17 @@
-# TeachAtHome
+# HomeWork
+<p align="center">
+  <img src="/documentation/assets/logo.png" width="400">
+</p>
 
-## Login / Registrierung:
+## Was ist HomeWork?
+HomeWork ist eine Plattform zur Verwaltung von Hausaufgaben.
 
-- https://flaviocopes.com/express-sessions/
-- http://www.passportjs.org/docs/
+Lehrer können Hausaufgaben erstellen, die eingereichten Lösungen ihrer Schüler einsehen und Feedback geben. Und was ist mit den Schülern?
 
-## Vision
+Schüler werden über neue Hausaufgaben informiert, können ihre Aufgaben digital einreichen und einen Grund für eine verspätete Abgabe hinterlegen.
 
-Lehrer können auf einer Plattform Hausaufgaben anmelden, die ab Freigabe durch den Lehrer bis zu einem definierten End-Zeitpunkt eingereicht werden können. Dabei ist der Zugang auf die Schüler seiner Klasse beschränkt. Die Schüler wiederum können online die Hausaufgaben machen (direkt in der Plattform Aufgaben lösen oder Aufsätze schreiben). Der Lehrer hat immer eine Übersicht, welche Schüler ~~wann~~ die Hausaufgaben eingereicht haben. Die Schüler können angeben, wenn sie ihre Hausaufgaben nicht machen und warum (krank mit Attest einreichen, krank - Attest wird physisch eingereicht, Hausaufgabe wird physisch eingereicht). Dem Lehrer und Schüler wird abhängig vom Endzeitpunkt visualisiert ob es noch fehlende Einreichungen gibt.
+Welche Möglichkeiten haben Eltern / Verantwortliche? Sie können Abgabetermine einsehen und die Meldung des Verspätungsgrundes bestätigen.
+
 
 ## Prozesse
 
@@ -16,12 +20,22 @@ Lehrer können auf einer Plattform Hausaufgaben anmelden, die ab Freigabe durch 
 3. Texte und Bilder können abgelegt werden
 4. Zusätzliche Dokumente können heruntergeladen/hochgeladen werden
 5. Für jede Aufgabe gibt es ein Antwortfeld + eine Möglichkeit zusätzliche Dateien hochzuladen
-6. Der Lehrer kann zu allen eingereichten Aufgaben ~~benoten und~~ den Schülern ~~zusätzliche Informationen~~ Feedback mitteilen
-7. Die Schüler können sich ~~benotete Aufgaben~~ das Feedback anschauen ~~und die Informationen dazu lesen~~
+6. Der Lehrer kann zu allen eingereichten Aufgaben den Schülern Feedback mitteilen
+7. Die Schüler können sich das Feedback anschauen
+
+## Login / Registrierung:
+
+- https://flaviocopes.com/express-sessions/
+- http://www.passportjs.org/docs/
+
+
 
 ## Entwicklung
 
-### Docker
+### Backend
+
+
+#### Docker
 
 Das vollständige docker-compose setup erstellt ein node image und verwendet
 ein fertiges mongodb image.
@@ -31,28 +45,23 @@ Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
 
 - `docker-compose up mongo` - Startet eine mongodb (auf port 27017).
 - (Falls nicht bereits ausgeführt) `npm install` - Installiert die Abhängigkeiten.
-- `node app.js 8080 localhost 27017` - Startet die Applikation.
+- `node index.js 8080 localhost 27017` - Startet die Applikation.
 
-### Ohne Docker
+#### Ohne Docker
 
 Damit die mongodb gemockt wird, muss die Umgebungsvariable "DBMOCK" gesetzt
 werden (der Wert ist egal).
 
-### Beispiel Daten
+#### Beispiel Daten
 
 Das bash script `fill_example_data.sh` sendet über die REST API und curl erste
 Beispieldaten in das Backend.
 
-### React Frontend
+### Frontend
 
-Installieren der node_modules:
-`yarn setup`
+Installieren der Abhängigkeiten:
+`npm install`
 
-Starten des Servers:
-`yarn client`
+Starten des Frontends:
+`npm start`
 
-Starten des Clients:
-`yarn server`
-
-Starten von Server und Client gleichzeitig:
-`yarn dev`

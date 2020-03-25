@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Schoolname from '../components/dashboard/Schoolname/Schoolname';
+import Schoolname from '../components/dashboard/Schoolname';
 import ClassroomList from '../components/classroom/Classroom';
 import ExerciseTable from '../components/dashboard/ExerciseTable';
 

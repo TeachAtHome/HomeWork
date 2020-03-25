@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Schoolname.css';
-import logo from '../../../assets/Logo.png';
-import logoText from '../../../assets/LogoText.png';
+import logo from '../../assets/Logo.png';
+import logoText from '../../assets/LogoText.png';
 
 export default class Schoolname extends Component {
   render() {

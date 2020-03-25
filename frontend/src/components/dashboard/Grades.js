@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Grades.css';
-import ornament from './assets/math.svg';
+import ornament from '../../assets/math.svg';
 import { Link } from 'react-router';
 
 export default class Grades extends Component {

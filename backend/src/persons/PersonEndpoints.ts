@@ -6,6 +6,7 @@ import {
   CREATED,
   BAD_REQUEST
 } from 'http-status-codes';
+import { PersonNotExistingException } from '../types/ErrorTypes';
 
 export class PersonEndpoints {
   getStudent = async (
@@ -28,16 +29,15 @@ export class PersonEndpoints {
           email
         );
       }
-
-      if (person) {
-        res.status(OK).json(person);
-      } else {
-        res.sendStatus(NOT_FOUND);
-      }
+      res.status(OK).json(person);
     } catch (error) {
       console.log(error);
       next(error);
-      res.sendStatus(INTERNAL_SERVER_ERROR);
+      if (error instanceof PersonNotExistingException) {
+        res.sendStatus(NOT_FOUND);
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
   getAllStudents = async (
@@ -47,15 +47,15 @@ export class PersonEndpoints {
   ): Promise<void> => {
     try {
       const persons = await req.services.personService.listAllStudents();
-      if (persons) {
-        res.status(OK).json(persons);
-      } else {
-        res.sendStatus(NOT_FOUND);
-      }
+      res.status(OK).json(persons);
     } catch (error) {
       console.log(error);
       next(error);
-      res.sendStatus(INTERNAL_SERVER_ERROR);
+      if (error instanceof PersonNotExistingException) {
+        res.sendStatus(NOT_FOUND);
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
   postStudent = async (
@@ -79,7 +79,11 @@ export class PersonEndpoints {
     } catch (error) {
       console.log(error);
       next(error);
-      res.send(error).status(BAD_REQUEST);
+      if (error instanceof PersonNotExistingException) {
+        res.sendStatus(BAD_REQUEST);
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
 }

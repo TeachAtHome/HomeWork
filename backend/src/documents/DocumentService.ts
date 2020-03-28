@@ -1,6 +1,6 @@
 import { DocumentRepository } from './DocumentRepository';
 import { Document } from './Document';
-import { DocumentNotFoundException } from './DocumentErrors';
+import { DocumentNotExistingException } from '../types/ErrorTypes';
 
 export class DocumentService {
   constructor(private documentRepository: DocumentRepository) {}
@@ -24,24 +24,28 @@ export class DocumentService {
       documentRefId
     );
     if (!document) {
-      throw new DocumentNotFoundException(documentRefId);
+      throw new DocumentNotExistingException(
+        'Document with documentRefId ' + documentRefId + ' does not exist'
+      );
     }
     return document;
   }
 
   async deleteDocument(documentRefId: string): Promise<void> {
     if (
-      await this.documentRepository.checkDocumentWithIdExists(documentRefId)
+      !(await this.documentRepository.checkDocumentWithIdExists(documentRefId))
     ) {
-      return this.documentRepository.deleteDocument(documentRefId);
+      throw new DocumentNotExistingException(
+        'Document with documentRefId ' + documentRefId + ' does not exist'
+      );
     }
-    throw new DocumentNotFoundException(documentRefId);
+    return this.documentRepository.deleteDocument(documentRefId);
   }
 
   async getAllDocuments(): Promise<Document[]> {
     const documents = await this.documentRepository.getAllDocuments();
     if (!documents) {
-      throw new DocumentNotFoundException();
+      throw new DocumentNotExistingException();
     }
     return documents;
   }
@@ -51,7 +55,7 @@ export class DocumentService {
       group
     );
     if (!documents) {
-      throw new DocumentNotFoundException();
+      throw new DocumentNotExistingException();
     }
     return documents;
   }

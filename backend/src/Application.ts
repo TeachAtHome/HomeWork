@@ -8,9 +8,11 @@ import { PersonRepository } from './persons/PersonRepository';
 import { GroupService } from './groups/GroupService';
 import { GroupRepository } from './groups/GroupRepository';
 import { GroupEndpoints } from './groups/GroupEndpoints';
-import { DocumentService } from './document/DocumentService';
-import { DocumentRepository } from './document/DocumentRepository';
-import { DocumentEndpoints } from './document/DocumentEndpoints';
+import { DocumentService } from './documents/DocumentService';
+import { DocumentRepository } from './documents/DocumentRepository';
+import { DocumentEndpoints } from './documents/DocumentEndpoints';
+import { StorageService } from './storage/StorageService';
+import { StorageEndpoints } from './storage/StorageEndpoints';
 
 /**
  * Wrapper around the Node process, ExpressServer abstraction and complex dependencies such as services
@@ -34,16 +36,21 @@ export class Application {
     const documentRepository = new DocumentRepository(mongoDBService);
     const documentService = new DocumentService(documentRepository);
 
+    // Storage
+    const storageService = new StorageService();
+
     const requestServices: RequestServices = {
       personService,
       groupService,
-      documentService
+      documentService,
+      storageService
     };
 
     const expressServer = new ExpressServer(
       new PersonEndpoints(),
       new GroupEndpoints(),
       new DocumentEndpoints(),
+      new StorageEndpoints(),
       requestServices
     );
 

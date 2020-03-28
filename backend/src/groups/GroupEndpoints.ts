@@ -1,6 +1,16 @@
 import { NextFunction, Request, Response } from 'express';
-import * as HttpStatus from 'http-status-codes';
-import { PersonNotExistingException } from '../types/ErrorTypes';
+import {
+  OK,
+  NOT_FOUND,
+  INTERNAL_SERVER_ERROR,
+  CREATED,
+  BAD_REQUEST
+} from 'http-status-codes';
+import {
+  PersonNotExistingException,
+  GroupNotExistingException,
+  GroupAlreadyExistingException
+} from '../types/ErrorTypes';
 
 export class GroupEndpoints {
   getStudentsByGroup = async (
@@ -20,14 +30,16 @@ export class GroupEndpoints {
           students.push(student);
         }
       }
-      res.status(HttpStatus.OK).json({ name: group.name, students });
+      res.status(OK).json({ name: group.name, students });
     } catch (error) {
       console.log(error);
       next(error);
       if (error instanceof PersonNotExistingException) {
-        res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      } else if (error instanceof GroupNotExistingException) {
+        res.sendStatus(NOT_FOUND);
       } else {
-        res.sendStatus(HttpStatus.NOT_FOUND);
+        res.sendStatus(INTERNAL_SERVER_ERROR);
       }
     }
   };
@@ -39,13 +51,15 @@ export class GroupEndpoints {
     try {
       const groupName = req.params.name;
       const group = await req.services.groupService.getGroup(groupName);
-      res.status(HttpStatus.OK).json(group);
+      res.status(OK).json(group);
     } catch (error) {
       console.log(error);
       next(error);
-      res.status(HttpStatus.NOT_FOUND).json({
-        error
-      });
+      if (error instanceof GroupNotExistingException) {
+        res.sendStatus(NOT_FOUND);
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
   getAllGroups = async (
@@ -55,13 +69,15 @@ export class GroupEndpoints {
   ): Promise<void> => {
     try {
       const groups = await req.services.groupService.listAllGroups();
-      res.status(HttpStatus.OK).json(groups);
+      res.status(OK).json(groups);
     } catch (error) {
       console.log(error);
       next(error);
-      res.status(HttpStatus.NOT_FOUND).json({
-        error
-      });
+      if (error instanceof GroupNotExistingException) {
+        res.sendStatus(NOT_FOUND);
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
   postTest = async (
@@ -71,13 +87,11 @@ export class GroupEndpoints {
   ): Promise<void> => {
     try {
       console.log(req.body);
-      res.sendStatus(HttpStatus.OK);
+      res.sendStatus(OK);
     } catch (error) {
       console.log(error);
       next(error);
-      res.status(HttpStatus.NOT_FOUND).json({
-        error
-      });
+      res.sendStatus(INTERNAL_SERVER_ERROR);
     }
   };
   postGroup = async (
@@ -95,13 +109,21 @@ export class GroupEndpoints {
         groupName,
         personIds
       );
-      res.status(HttpStatus.CREATED).json(group);
+      res.status(CREATED).json(group);
     } catch (error) {
       console.log(error);
       next(error);
-      res.status(HttpStatus.BAD_REQUEST).json({
-        error
-      });
+      if (error instanceof PersonNotExistingException) {
+        res.status(BAD_REQUEST).json({
+          error: 'Specified user id is not know to the system'
+        });
+      } else if (error instanceof GroupAlreadyExistingException) {
+        res.status(BAD_REQUEST).json({
+          error: 'Group does already exist'
+        });
+      } else {
+        res.sendStatus(INTERNAL_SERVER_ERROR);
+      }
     }
   };
 }

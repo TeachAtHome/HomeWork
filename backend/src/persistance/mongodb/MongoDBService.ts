@@ -1,14 +1,4 @@
-// var MongoClient;
-
-// if (process.env.DBMOCK) {
-//     console.log("Using mocked mongo");
-//     MongoClient = require('mongo-mock').MongoClient;
-//     MongoClient.persist = "mongo_mock.js";
-// } else {
-//     MongoClient = require('mongodb').MongoClient;
-// }
-
-import { MongoClient, Db, MongoClientOptions, FilterQuery } from 'mongodb';
+import { MongoClient, Db, MongoClientOptions } from 'mongodb';
 import { DatabaseService } from '../DatabaseService';
 import { Entity } from '../../types/Entity';
 
@@ -24,12 +14,21 @@ export class MongoDBService implements DatabaseService {
 
   async open(): Promise<void> {
     try {
-      console.log('open db');
+      console.log('Open db');
       const options: MongoClientOptions = { useUnifiedTopology: true };
-      MongoDBService.client = await MongoClient.connect(
-        `mongodb://${this.databaseHost}:${this.databasePort}/${this.databaseName}`,
-        options
-      );
+      if (process.env.DBMOCK) {
+        console.log('Using mocked mongo');
+        const mongoClientMock = require('mongo-mock').MongoClient;
+        MongoDBService.client = await mongoClientMock.connect(
+          `mongodb://${this.databaseHost}:${this.databasePort}/${this.databaseName}`,
+          options
+        );
+      } else {
+        MongoDBService.client = await MongoClient.connect(
+          `mongodb://${this.databaseHost}:${this.databasePort}/${this.databaseName}`,
+          options
+        );
+      }
       this.database = MongoDBService.client.db(this.databaseName);
     } catch (error) {
       console.error(error);
@@ -38,7 +37,7 @@ export class MongoDBService implements DatabaseService {
 
   async close(): Promise<void> {
     try {
-      console.log('close db');
+      console.log('Close db');
       await MongoDBService.client.close();
     } catch (error) {
       console.error(error);

@@ -1,5 +1,9 @@
 import { GroupRepository } from './GroupRepository';
 import { Group } from './Group';
+import {
+  GroupAlreadyExistingException,
+  GroupNotExistingException
+} from '../types/ErrorTypes';
 
 export class GroupService {
   constructor(private groupRepository: GroupRepository) {}
@@ -7,7 +11,7 @@ export class GroupService {
   async listAllGroups(): Promise<Group[]> {
     const groups = await this.groupRepository.getAll();
     if (!groups) {
-      throw new Error('No groups exist');
+      throw new GroupNotExistingException();
     }
     return groups;
   }
@@ -15,9 +19,14 @@ export class GroupService {
   async getGroup(name: string): Promise<Group> {
     const group = await this.groupRepository.getGroupByName(name);
     if (!group) {
-      throw new Error('Group does not exist');
+      throw new GroupNotExistingException();
     }
     return group;
+  }
+
+  async checkGroupExists(name: string): Promise<boolean> {
+    const group = await this.groupRepository.getGroupByName(name);
+    return group != null;
   }
 
   async addGroup(name: string, personIds: string[]): Promise<Group> {
@@ -25,7 +34,7 @@ export class GroupService {
     if (!(await this.groupRepository.checkGroupExists(group))) {
       return this.groupRepository.addGroup(group);
     }
-    throw new Error('Group is already existing');
+    throw new GroupAlreadyExistingException();
   }
 
   async updateGroup(name: string, personIds: string[]): Promise<void> {
@@ -33,6 +42,6 @@ export class GroupService {
     if (await this.groupRepository.checkGroupExists(group)) {
       await this.groupRepository.updateGroup(group);
     }
-    throw new Error('Group is already existing');
+    throw new GroupAlreadyExistingException();
   }
 }

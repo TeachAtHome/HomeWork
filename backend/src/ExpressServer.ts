@@ -4,8 +4,8 @@ import { Server } from 'http';
 import * as compress from 'compression';
 import * as helmet from 'helmet';
 import * as hpp from 'hpp';
-import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as fileUpload from 'express-fileupload';
 import * as RateLimit from 'express-rate-limit';
 import * as noCache from 'nocache';
 
@@ -15,7 +15,8 @@ import { addServicesToRequest } from './middlewares/ServiceDependenciesMiddlewar
 // import { Environment } from './Environment'
 import { PersonEndpoints } from './persons/PersonEndpoints';
 import { GroupEndpoints } from './groups/GroupEndpoints';
-import { DocumentEndpoints } from './document/DocumentEndpoints';
+import { DocumentEndpoints } from './documents/DocumentEndpoints';
+import { StorageEndpoints } from './storage/StorageEndpoints';
 
 /**
  * Abstraction around the raw Express.js server and Nodes' HTTP server.
@@ -30,6 +31,7 @@ export class ExpressServer {
     private personEndpoints: PersonEndpoints,
     private groupEndpoints: GroupEndpoints,
     private documentEndpoints: DocumentEndpoints,
+    private storageEndpoints: StorageEndpoints,
     private requestServices: RequestServices
   ) {}
 
@@ -75,6 +77,12 @@ export class ExpressServer {
     server.use(express.json());
     server.use(cookieParser());
     server.use(compress());
+    server.use(
+      fileUpload({
+        createParentPath: true,
+        useTempFiles: true
+      })
+    );
 
     const baseRateLimitingOptions = {
       windowMs: 15 * 60 * 1000, // 15 min in ms
@@ -151,6 +159,28 @@ export class ExpressServer {
     server.delete(
       '/api/document/deleteDocument/:documentRefId',
       this.documentEndpoints.deleteDocument
+    );
+
+    // Storage
+    server.put(
+      '/api/storage/upload',
+      noCache,
+      this.storageEndpoints.uploadDocument
+    );
+    server.get(
+      '/api/storage/download/:documentRefId',
+      noCache,
+      this.storageEndpoints.downloadDocument
+    );
+    server.get(
+      '/api/storage/document/:documentRefId',
+      noCache,
+      this.storageEndpoints.getDocument
+    );
+    server.post(
+      '/api/storage/store',
+      noCache,
+      this.storageEndpoints.storeDocument
     );
   }
 }

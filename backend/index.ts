@@ -1,4 +1,4 @@
-const Application = require('./application');
+import { Application } from './Application'
 
 /**
  * Entrypoint for bootstrapping and starting the application.

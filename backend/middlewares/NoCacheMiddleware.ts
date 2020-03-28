@@ -1,7 +1,8 @@
-const noCache = (_, res, next) => {
+import { Request, Response, NextFunction } from 'express'
+
+export function noCacheMiddleware(_: Request, res: Response, next: NextFunction) {
     res.setHeader('Expires', '0')
     res.setHeader('Pragma', 'no-cache')
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
     next()
 }
-module.exports = noCache;

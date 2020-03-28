@@ -1,4 +1,4 @@
-import { Application } from './Application'
+import { Application } from './Application';
 
 /**
  * Entrypoint for bootstrapping and starting the application.
@@ -7,5 +7,5 @@ import { Application } from './Application'
  */
 
 Application.createApplication().then(() => {
-    console.info('The application was started! Kill it using Ctrl + C')
-})
+  console.info('The application was started! Kill it using Ctrl + C');
+});

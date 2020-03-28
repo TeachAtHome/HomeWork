@@ -2,11 +2,10 @@
   "name": "teachathome",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "start": "nodemon --watch . -e ts,tsx --ignore '*Spec.ts*' --ignore '*Test.ts*' --exec 'npm run start:server'",
-    "start:server": "ts-node --files --project tsconfig.json index.ts",
-    "build": "tsc",
+    "start:server": "ts-node --files --project tsconfig.json src/index.ts",
     "lint": "tslint --project '.'",
     "check": "gts check",
     "clean": "gts clean",

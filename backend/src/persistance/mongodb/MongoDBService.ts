@@ -1,4 +1,4 @@
-import { MongoClient, Db, MongoClientOptions } from 'mongodb';
+import { MongoClient, Db, MongoClientOptions, ObjectID } from 'mongodb';
 import { DatabaseService } from '../DatabaseService';
 import { Entity } from '../../types/Entity';
 
@@ -51,17 +51,17 @@ export class MongoDBService implements DatabaseService {
     const response = await this.database
       .collection(collectionName)
       .insertOne(objectToInsert);
-    // select first entry, because we only insert one entry and the array consists of one object.
-    // const id = response.ops[0];
-
-    // return Promise.resolve(id);
     return response.ops[0];
   }
 
   async getCollectionEntries(
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number }
+    // tslint:disable-next-line:no-any
+    query: any
   ): Promise<Entity[]> {
+    if (query['_id']) {
+      query['_id'] = new ObjectID(query['_id'] as string);
+    }
     return this.database
       .collection(collectionName)
       .find(query)
@@ -77,9 +77,13 @@ export class MongoDBService implements DatabaseService {
 
   async deleteCollectionEntry(
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number }
+    // tslint:disable-next-line:no-any
+    query: any
   ): Promise<void> {
     try {
+      if (query['_id']) {
+        query['_id'] = new ObjectID(query['_id'] as string);
+      }
       await this.database.collection(collectionName).deleteOne(query);
     } catch (error) {
       console.error(error);
@@ -88,10 +92,14 @@ export class MongoDBService implements DatabaseService {
 
   async updateCollectionEntry(
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number },
+    // tslint:disable-next-line:no-any
+    query: any,
     objectToUpdate: Entity
   ): Promise<void> {
     try {
+      if (query['_id']) {
+        query['_id'] = new ObjectID(query['_id'] as string);
+      }
       await this.database
         .collection(collectionName)
         .updateOne(query, objectToUpdate);

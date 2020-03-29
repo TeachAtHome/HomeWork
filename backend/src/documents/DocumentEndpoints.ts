@@ -7,8 +7,8 @@ import {
   BAD_REQUEST
 } from 'http-status-codes';
 import {
-  GroupNotExistingException,
-  DocumentNotExistingException
+  GroupNotFoundException,
+  DocumentNotFoundException
 } from '../types/ErrorTypes';
 
 export class DocumentEndpoints {
@@ -43,14 +43,14 @@ export class DocumentEndpoints {
       res.sendStatus(CREATED);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof GroupNotExistingException) {
+      if (error instanceof GroupNotFoundException) {
         res.status(BAD_REQUEST).json({
           error: 'Specified group is not know to the system'
         });
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   getDocument = async (
@@ -66,12 +66,12 @@ export class DocumentEndpoints {
       res.status(OK).json(document);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof DocumentNotExistingException) {
+      if (error instanceof DocumentNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   getAllDocuments = async (
@@ -93,14 +93,14 @@ export class DocumentEndpoints {
       res.status(OK).json(documents);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof GroupNotExistingException) {
+      if (error instanceof GroupNotFoundException) {
         res.sendStatus(INTERNAL_SERVER_ERROR);
-      } else if (error instanceof DocumentNotExistingException) {
+      } else if (error instanceof DocumentNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   deleteDocument = async (
@@ -114,12 +114,12 @@ export class DocumentEndpoints {
       res.sendStatus(OK);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof DocumentNotExistingException) {
+      if (error instanceof DocumentNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
 }

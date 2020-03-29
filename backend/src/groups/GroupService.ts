@@ -2,7 +2,7 @@ import { GroupRepository } from './GroupRepository';
 import { Group } from './Group';
 import {
   GroupAlreadyExistingException,
-  GroupNotExistingException
+  GroupNotFoundException
 } from '../types/ErrorTypes';
 
 export class GroupService {
@@ -11,7 +11,7 @@ export class GroupService {
   async listAllGroups(): Promise<Group[]> {
     const groups = await this.groupRepository.getAll();
     if (!groups) {
-      throw new GroupNotExistingException();
+      throw new GroupNotFoundException();
     }
     return groups;
   }
@@ -19,7 +19,7 @@ export class GroupService {
   async getGroup(name: string): Promise<Group> {
     const group = await this.groupRepository.getGroupByName(name);
     if (!group) {
-      throw new GroupNotExistingException();
+      throw new GroupNotFoundException();
     }
     return group;
   }

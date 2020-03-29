@@ -7,8 +7,8 @@ import {
   BAD_REQUEST
 } from 'http-status-codes';
 import {
-  PersonNotExistingException,
-  GroupNotExistingException,
+  PersonNotFoundException,
+  GroupNotFoundException,
   GroupAlreadyExistingException
 } from '../types/ErrorTypes';
 
@@ -33,14 +33,14 @@ export class GroupEndpoints {
       res.status(OK).json({ name: group.name, students });
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof PersonNotExistingException) {
+      if (error instanceof PersonNotFoundException) {
         res.sendStatus(INTERNAL_SERVER_ERROR);
-      } else if (error instanceof GroupNotExistingException) {
+      } else if (error instanceof GroupNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   getGroup = async (
@@ -54,12 +54,12 @@ export class GroupEndpoints {
       res.status(OK).json(group);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof GroupNotExistingException) {
+      if (error instanceof GroupNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   getAllGroups = async (
@@ -72,12 +72,12 @@ export class GroupEndpoints {
       res.status(OK).json(groups);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof GroupNotExistingException) {
+      if (error instanceof GroupNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   postTest = async (
@@ -90,8 +90,8 @@ export class GroupEndpoints {
       res.sendStatus(OK);
     } catch (error) {
       console.log(error);
-      next(error);
       res.sendStatus(INTERNAL_SERVER_ERROR);
+      next();
     }
   };
   postGroup = async (
@@ -112,8 +112,7 @@ export class GroupEndpoints {
       res.status(CREATED).json(group);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof PersonNotExistingException) {
+      if (error instanceof PersonNotFoundException) {
         res.status(BAD_REQUEST).json({
           error: 'Specified user id is not know to the system'
         });
@@ -124,6 +123,7 @@ export class GroupEndpoints {
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
 }

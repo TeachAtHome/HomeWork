@@ -6,7 +6,7 @@ import {
   CREATED,
   BAD_REQUEST
 } from 'http-status-codes';
-import { PersonNotExistingException } from '../types/ErrorTypes';
+import { PersonNotFoundException } from '../types/ErrorTypes';
 
 export class PersonEndpoints {
   getStudent = async (
@@ -31,13 +31,13 @@ export class PersonEndpoints {
       }
       res.status(OK).json(person);
     } catch (error) {
-      console.log(error);
-      next(error);
-      if (error instanceof PersonNotExistingException) {
+      console.log(JSON.stringify(error));
+      if (error instanceof PersonNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   getAllStudents = async (
@@ -50,12 +50,12 @@ export class PersonEndpoints {
       res.status(OK).json(persons);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof PersonNotExistingException) {
+      if (error instanceof PersonNotFoundException) {
         res.sendStatus(NOT_FOUND);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
   postStudent = async (
@@ -78,12 +78,12 @@ export class PersonEndpoints {
       res.status(CREATED).json(person);
     } catch (error) {
       console.log(error);
-      next(error);
-      if (error instanceof PersonNotExistingException) {
+      if (error instanceof PersonNotFoundException) {
         res.sendStatus(BAD_REQUEST);
       } else {
         res.sendStatus(INTERNAL_SERVER_ERROR);
       }
+      next();
     }
   };
 }

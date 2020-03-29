@@ -1,7 +1,7 @@
 import { PersonRepository } from './PersonRepository';
 import { Person, PersonRole } from './Person';
 import {
-  PersonNotExistingException,
+  PersonNotFoundException,
   PersonAlreadyExistingException
 } from '../types/ErrorTypes';
 
@@ -11,7 +11,7 @@ export class PersonService {
   async listAllPersons(): Promise<Person[]> {
     const persons = await this.personRepository.getAllPersons();
     if (!persons) {
-      throw new PersonNotExistingException();
+      throw new PersonNotFoundException();
     }
     return persons;
   }
@@ -21,7 +21,7 @@ export class PersonService {
       PersonRole.STUDENT
     );
     if (!persons) {
-      throw new PersonNotExistingException();
+      throw new PersonNotFoundException();
     }
     return persons;
   }
@@ -31,7 +31,7 @@ export class PersonService {
       PersonRole.TEACHER
     );
     if (!persons) {
-      throw new PersonNotExistingException();
+      throw new PersonNotFoundException();
     }
     return persons;
   }
@@ -41,7 +41,7 @@ export class PersonService {
       PersonRole.PARENT
     );
     if (!persons) {
-      throw new PersonNotExistingException();
+      throw new PersonNotFoundException();
     }
     return persons;
   }
@@ -54,7 +54,7 @@ export class PersonService {
     role: PersonRole
   ): Promise<Person> {
     const person = {
-      id: undefined,
+      _id: undefined,
       firstname,
       lastname,
       email,
@@ -97,7 +97,7 @@ export class PersonService {
   async getPersonById(id: string): Promise<Person> {
     const person = await this.personRepository.getPersonById(id);
     if (!person) {
-      throw new PersonNotExistingException(
+      throw new PersonNotFoundException(
         'Person with id ' + id + ' does not exist'
       );
     }
@@ -117,7 +117,7 @@ export class PersonService {
       role
     );
     if (!person) {
-      throw new PersonNotExistingException();
+      throw new PersonNotFoundException();
     }
     return person;
   }
@@ -147,7 +147,7 @@ export class PersonService {
   }
 
   private async updatePerson(
-    id: string,
+    _id: string,
     firstname: string,
     lastname: string,
     email: string,
@@ -155,7 +155,7 @@ export class PersonService {
     role: PersonRole
   ): Promise<void> {
     const person = {
-      id,
+      _id,
       firstname,
       lastname,
       email,
@@ -165,7 +165,7 @@ export class PersonService {
     if (await this.personRepository.checkPersonExists(person)) {
       return this.personRepository.updatePerson(person);
     }
-    throw new PersonNotExistingException();
+    throw new PersonNotFoundException();
   }
 
   async updateStudent(
@@ -223,6 +223,6 @@ export class PersonService {
     if (await this.personRepository.checkPersonWithIdExists(id)) {
       return this.personRepository.deletePerson(id);
     }
-    throw new PersonNotExistingException();
+    throw new PersonNotFoundException();
   }
 }

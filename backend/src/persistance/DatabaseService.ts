@@ -9,16 +9,19 @@ export interface DatabaseService {
   ) => Promise<Entity>;
   getCollectionEntries: (
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number }
+    // tslint:disable-next-line:no-any
+    query: any
   ) => Promise<Entity[]>;
   getAllCollectionEntries: (collectionName: string) => Promise<Entity[]>;
   deleteCollectionEntry: (
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number }
+    // tslint:disable-next-line:no-any
+    query: any
   ) => Promise<void>;
   updateCollectionEntry: (
     collectionName: string,
-    query: { [key: string]: string | string[] | boolean | number },
+    // tslint:disable-next-line:no-any
+    query: any,
     objectToUpdate: Entity
   ) => Promise<void>;
 }

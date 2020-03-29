@@ -4,7 +4,6 @@ import * as uuid from 'uuid';
 import { NextFunction, Request, Response } from 'express';
 import {
   OK,
-  NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   CREATED,
   BAD_REQUEST
@@ -36,8 +35,8 @@ export class StorageEndpoints {
       });
     } catch (error) {
       console.log(error);
-      next(error);
       res.status(INTERNAL_SERVER_ERROR).send(error);
+      next();
     }
   };
   storeDocument = async (
@@ -69,8 +68,8 @@ export class StorageEndpoints {
       });
     } catch (error) {
       console.log(error);
-      next(error);
       res.status(INTERNAL_SERVER_ERROR).send(error);
+      next();
     }
   };
   downloadDocument = async (
@@ -92,8 +91,8 @@ export class StorageEndpoints {
       res.download(documentPath);
     } catch (error) {
       console.log(error);
-      next(error);
       res.status(INTERNAL_SERVER_ERROR).send(error);
+      next();
     }
   };
 
@@ -119,8 +118,8 @@ export class StorageEndpoints {
       });
     } catch (error) {
       console.log(error);
-      next(error);
       res.status(INTERNAL_SERVER_ERROR).send(error);
+      next();
     }
   };
 }

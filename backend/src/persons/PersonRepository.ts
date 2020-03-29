@@ -6,10 +6,10 @@ export class PersonRepository {
 
   constructor(private databaseConnection: DatabaseService) {}
 
-  async getPersonById(id: string): Promise<Person | null> {
+  async getPersonById(_id: string): Promise<Person | null> {
     const result = await this.databaseConnection.getCollectionEntries(
       this.collectionName,
-      { id }
+      { _id }
     );
     if (result.length >= 1) {
       return result[0] as Person;
@@ -92,7 +92,7 @@ export class PersonRepository {
   async updatePerson(person: Person): Promise<void> {
     await this.databaseConnection.updateCollectionEntry(
       this.collectionName,
-      { id: person.id as string },
+      { id: person._id as string },
       person
     );
   }

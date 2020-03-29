@@ -1,5 +1,5 @@
-export class PersonNotExistingException implements Error {
-  name = 'PersonNotExistingException';
+export class PersonNotFoundException implements Error {
+  name = 'PersonNotFoundException';
   constructor(public message = 'Person does not exist') {}
 }
 
@@ -8,8 +8,8 @@ export class PersonAlreadyExistingException implements Error {
   constructor(public message = 'Person does already exist') {}
 }
 
-export class GroupNotExistingException implements Error {
-  name = 'PersonNotExistingException';
+export class GroupNotFoundException implements Error {
+  name = 'GroupNotFoundException';
   constructor(public message = 'Group does not exist') {}
 }
 
@@ -18,7 +18,7 @@ export class GroupAlreadyExistingException implements Error {
   constructor(public message = 'Group does already exist') {}
 }
 
-export class DocumentNotExistingException implements Error {
+export class DocumentNotFoundException implements Error {
   name = 'DocumentNotFoundException';
   constructor(public message = 'Document does not exist') {}
 }

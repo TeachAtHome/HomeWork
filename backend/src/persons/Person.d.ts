@@ -1,7 +1,7 @@
 export const enum PersonRole { 'TEACHER', 'STUDENT', 'PARENT' }
 
 export interface Person {
-    id: string | undefined
+    _id: string | undefined
     firstname: string
     lastname: string
     email: string

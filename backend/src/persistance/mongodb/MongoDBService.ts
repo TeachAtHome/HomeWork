@@ -10,7 +10,7 @@ export class MongoDBService implements DatabaseService {
     private databaseHost: string,
     private databasePort: number,
     private databaseName: string
-  ) {}
+  ) { }
 
   async open(): Promise<void> {
     try {
@@ -48,10 +48,11 @@ export class MongoDBService implements DatabaseService {
     collectionName: string,
     objectToInsert: Entity
   ): Promise<Entity> {
+    const dbObject: any = MongoDBService.mapEntityToId(objectToInsert);
     const response = await this.database
       .collection(collectionName)
-      .insertOne(objectToInsert);
-    return response.ops[0];
+      .insertOne(dbObject);
+    return MongoDBService.mapIdToEntity(response.ops[0]);
   }
 
   async getCollectionEntries(
@@ -59,20 +60,23 @@ export class MongoDBService implements DatabaseService {
     // tslint:disable-next-line:no-any
     query: any
   ): Promise<Entity[]> {
-    if (query['_id']) {
-      query['_id'] = new ObjectID(query['_id'] as string);
+    if (query['id']) {
+      query['_id'] = new ObjectID(query['id']);
+      delete query['id'];
     }
-    return this.database
+    return (await this.database
       .collection(collectionName)
       .find(query)
-      .toArray();
+      .toArray())
+      .map(MongoDBService.mapIdToEntity)
   }
 
   async getAllCollectionEntries(collectionName: string): Promise<Entity[]> {
-    return this.database
+    return (await this.database
       .collection(collectionName)
       .find()
-      .toArray();
+      .toArray())
+      .map(MongoDBService.mapIdToEntity)
   }
 
   async deleteCollectionEntry(
@@ -81,8 +85,9 @@ export class MongoDBService implements DatabaseService {
     query: any
   ): Promise<void> {
     try {
-      if (query['_id']) {
-        query['_id'] = new ObjectID(query['_id'] as string);
+      if (query['id']) {
+        query['_id'] = new ObjectID(query['id']);
+        delete query['id'];
       }
       await this.database.collection(collectionName).deleteOne(query);
     } catch (error) {
@@ -97,14 +102,31 @@ export class MongoDBService implements DatabaseService {
     objectToUpdate: Entity
   ): Promise<void> {
     try {
-      if (query['_id']) {
-        query['_id'] = new ObjectID(query['_id'] as string);
+      if (query['id']) {
+        query['_id'] = new ObjectID(query['_id']);
+        delete query['id'];
       }
+      const dbObject = MongoDBService.mapEntityToId(objectToUpdate);
       await this.database
         .collection(collectionName)
-        .updateOne(query, objectToUpdate);
+        .updateOne(query, dbObject);
     } catch (error) {
       console.error(error);
     }
+  }
+
+  private static mapIdToEntity(dbObject: any): any{
+    dbObject['id'] = dbObject['_id'].toString();
+    delete dbObject['_id'];
+    return dbObject;
+  }
+
+  private static mapEntityToId(entity: Entity): any{
+    const dbObject: any = entity;
+    if(entity['id']) {
+      dbObject['_id'] = new ObjectID(entity['id']);
+    }
+    delete dbObject['id'];
+    return dbObject;
   }
 }

@@ -54,7 +54,7 @@ export class PersonService {
     role: PersonRole
   ): Promise<Person> {
     const person = {
-      _id: undefined,
+      id: undefined,
       firstname,
       lastname,
       email,
@@ -147,7 +147,7 @@ export class PersonService {
   }
 
   private async updatePerson(
-    _id: string,
+    id: string,
     firstname: string,
     lastname: string,
     email: string,
@@ -155,7 +155,7 @@ export class PersonService {
     role: PersonRole
   ): Promise<void> {
     const person = {
-      _id,
+      id,
       firstname,
       lastname,
       email,

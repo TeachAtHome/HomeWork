@@ -32,7 +32,7 @@ function addGroup {
 
 function getStudentID {
     studentData="$1"
-    echo $studentData | cut -d '"' -f4
+    echo $studentData | grep -o -E \"id\":\"[[:alnum:]]*\" | cut -d'"' -f4
 }
 
 mc_data=$(addStudent '{"firstname": "MC", "lastname": "Hammer", "email": "hammer@time.com", "sick": false}')

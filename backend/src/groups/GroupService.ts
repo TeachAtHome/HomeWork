@@ -30,7 +30,7 @@ export class GroupService {
   }
 
   async addGroup(name: string, personIds: string[]): Promise<Group> {
-    const group = { name, personIds };
+    const group = { id: undefined, name, personIds };
     if (!(await this.groupRepository.checkGroupExists(group))) {
       return this.groupRepository.addGroup(group);
     }
@@ -38,7 +38,7 @@ export class GroupService {
   }
 
   async updateGroup(name: string, personIds: string[]): Promise<void> {
-    const group = { name, personIds };
+    const group = { id: undefined, name, personIds };
     if (await this.groupRepository.checkGroupExists(group)) {
       await this.groupRepository.updateGroup(group);
     }

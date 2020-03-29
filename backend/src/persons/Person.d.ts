@@ -1,7 +1,8 @@
+import { Entity } from "../types/Entity";
+
 export const enum PersonRole { 'TEACHER', 'STUDENT', 'PARENT' }
 
-export interface Person {
-    _id: string | undefined
+export interface Person extends Entity{
     firstname: string
     lastname: string
     email: string

@@ -11,7 +11,7 @@ export class DocumentService {
   ): Promise<void> {
     let document = await this.documentRepository.getDocumentById(documentRefId);
     if (!document) {
-      document = { documentRefId, groups };
+      document = { id: undefined, documentRefId, groups };
       await this.documentRepository.addDocument(document);
     } else {
       document.groups = document.groups.concat(groups);

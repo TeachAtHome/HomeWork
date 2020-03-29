@@ -13,8 +13,7 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check",
-    "webpack": "webpack --config webpack.config.js"
+    "posttest": "npm run check"
   },
   "repository": {
     "type": "git",
@@ -39,10 +38,8 @@
     "@types/mongodb": "^3.5.3",
     "@types/node": "^10.0.3",
     "@types/uuid": "^7.0.2",
-    "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6",
     "express-rate-limit": "^5.1.1",

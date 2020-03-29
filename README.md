@@ -1,9 +1,11 @@
 # HomeWork
+
 <p align="center">
   <img src="/documentation/assets/logo.png" width="400">
 </p>
 
 ## Was ist HomeWork?
+
 HomeWork ist eine Plattform zur Verwaltung von Hausaufgaben.
 
 Lehrer können Hausaufgaben erstellen, die eingereichten Lösungen ihrer Schüler einsehen und Feedback geben. Und was ist mit den Schülern?
@@ -11,7 +13,6 @@ Lehrer können Hausaufgaben erstellen, die eingereichten Lösungen ihrer Schüle
 Schüler werden über neue Hausaufgaben informiert, können ihre Aufgaben digital einreichen und einen Grund für eine verspätete Abgabe hinterlegen.
 
 Welche Möglichkeiten haben Eltern / Verantwortliche? Sie können Abgabetermine einsehen und die Meldung des Verspätungsgrundes bestätigen.
-
 
 ## Prozesse
 
@@ -23,29 +24,40 @@ Welche Möglichkeiten haben Eltern / Verantwortliche? Sie können Abgabetermine 
 6. Der Lehrer kann zu allen eingereichten Aufgaben den Schülern Feedback mitteilen
 7. Die Schüler können sich das Feedback anschauen
 
-## Login / Registrierung:
+## Login / Registrierung
 
-- https://flaviocopes.com/express-sessions/
-- http://www.passportjs.org/docs/
-
-
+- <https://flaviocopes.com/express-sessions/>
+- <http://www.passportjs.org/docs/>
 
 ## Entwicklung
 
 ### Backend
 
+Das Backend befindet sich im Unterordner `backend`.
+Alle Kommandos erwarten, dass man sich in diesem Ordner befindet.
 
 #### Docker
 
-Das vollständige docker-compose setup erstellt ein node image und verwendet
-ein fertiges mongodb image.
-Es ist nicht notwendig das node image für die Entwicklung zu bauen.
+Das vollständige docker-compose Setup erstellt ein node Image und verwendet
+ein fertiges MongoDB Image.
+Es ist nicht notwendig das Node Image für die Entwicklung zu bauen.
 
-Somit reicht aus für die Entwicklung die folgenden Kommandos auszuführen:
+Folgende Kommandos sind für die Entwicklung notwendig:
+
+Aufsetzen der MongoDB:
 
 - `docker-compose up mongo` - Startet eine mongodb (auf port 27017).
+
 - (Falls nicht bereits ausgeführt) `npm install` - Installiert die Abhängigkeiten.
-- `node index.js 8080 localhost 27017` - Startet die Applikation.
+
+Start des Backends im Typescript Development Modus:
+
+- `npm start`
+
+Kompilieren und starten des kompilierten Backends:
+
+- `npm run compile` - Kompilert die Typescript Applikation zu einer JavaScript Applikation
+- `node build/index.js` - Startet die kompilierte JavaScript Applikation
 
 #### Ohne Docker
 
@@ -64,4 +76,3 @@ Installieren der Abhängigkeiten:
 
 Starten des Frontends:
 `npm start`
-

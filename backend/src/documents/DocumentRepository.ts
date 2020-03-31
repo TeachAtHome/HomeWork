@@ -2,7 +2,7 @@ import { Document } from './Document';
 import { DatabaseService } from '../persistance/DatabaseService';
 
 export class DocumentRepository {
-  private collectionName = 'groups';
+  private collectionName = 'documents';
 
   constructor(private databaseConnection: DatabaseService) {}
 

@@ -164,22 +164,18 @@ export class ExpressServer {
     // Storage
     server.put(
       '/api/storage/upload',
-      noCache,
       this.storageEndpoints.uploadDocument
     );
     server.get(
       '/api/storage/download/:documentRefId',
-      noCache,
       this.storageEndpoints.downloadDocument
     );
     server.get(
       '/api/storage/document/:documentRefId',
-      noCache,
       this.storageEndpoints.getDocument
     );
     server.post(
       '/api/storage/store',
-      noCache,
       this.storageEndpoints.storeDocument
     );
   }

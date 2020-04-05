@@ -14,5 +14,5 @@ jobs:
     - stage: Test
       name: Run API Tests
       before_script: npm run compile
-      script: echo "Ran Test 1"
+      script: npm test
   

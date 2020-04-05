@@ -1,4 +1,4 @@
-## Part 1/3 - Manual SonarQube
+## Part 1/4 - Manual SonarQube
 # dist: trusty
 # language: node_js
 language: nodejs
@@ -6,11 +6,12 @@ node_js:
     - lts/*
 cache: npm
 before_install:
-    - nvm install 12.16.1
+## Part 2/4 - Manual SonarQube
+    # - nvm install 12.16.1
     - cd backend
 install:
     - npm ci
-## Part 2/3 - Manual SonarQube
+## Part 3/4 - Manual SonarQube
 # addons:
 #     sonarcloud:
 #         organization: "teachathome"
@@ -21,7 +22,7 @@ jobs:
     - stage: Quality
       name: Linting
       script: npm run check
-## Part 3/3 - Manual SonarQube
+## Part 4/4 - Manual SonarQube
     # - stage: Quality
     #   name: SonarQube
     #   script: sonar-scanner

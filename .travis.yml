@@ -7,4 +7,5 @@ before_install:
 install:
     - npm ci
 script:
+    - cd backend
     - npm run build

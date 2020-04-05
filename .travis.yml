@@ -6,6 +6,11 @@ before_install:
     - cd backend
 install:
     - npm ci
-script:
-    - npm run check
-    - npm run compile
+# script:
+#     - npm run check
+#     - npm run compile
+jobs:
+    include:
+    - name: Test Job
+      script: echo "Running job 1"
+  

@@ -11,8 +11,8 @@ install:
 addons:
     sonarcloud:
         organization: "teachathome"
-        # token: 
-        secure: "YtVU+bpf3lggZ21nnsIBq/hFdVdV3BvNQDs3qehE87UdxaMo/hXfkCc7+U/KENOTAmczrg1rqyIijoqaFnqr2jr/P+qXhZ5IdREsoj/kDgyD6SDFixQNIQ/uFIvD4kxAFRRTZAANoB1j08fxt0ryVCWnvDbojeej9o54Y/brmHLQLpFN/GHG7EIaoAEqMrG//UGloKAy1f/gNWBUO0z8NqeRo+GW8SRxyRKpjij+sxoQ9Cb9RwVLtzYv1QGPFls10tL0n1AtakgYBfb+wPRNXo6mSPSEMkW+WgAtKbhvU7qOcdcRtoaN7OHle+DTamPHihJ16ke178Kypl5os2UF5gSIRhGjNOX2wAW9xTQAwi845Xrc6I8kIGt6zt3Rh4FrXuogUd0tI1Ji+KKBEwgAC/M5jQhdMA9Ley4yjfa0TRGCO6gSpZHeO163Sn61iKDkegp/OadyKuv/2hYmUwJPkYDRFLe+xIK22T5s6/HUaq5XswRSgkZ/5R9ZHTzggg8kuqeAFjZE8kTnyN0C8ZYABP2GDTd2zPjT76KPmfXvi3mLybtndfBFmfZXgd1fV1e3VD4dknJRmGiwMDGWub8sOTL3Ym2Nr8FHq5x1KWcDEwLV8DXIeVVVDACUnkplMRujfqi5Pjzi3y3X3n1dAGinnWzJuIOsJrj9rBpdAJHOwfM="
+        token: 
+            secure: "YtVU+bpf3lggZ21nnsIBq/hFdVdV3BvNQDs3qehE87UdxaMo/hXfkCc7+U/KENOTAmczrg1rqyIijoqaFnqr2jr/P+qXhZ5IdREsoj/kDgyD6SDFixQNIQ/uFIvD4kxAFRRTZAANoB1j08fxt0ryVCWnvDbojeej9o54Y/brmHLQLpFN/GHG7EIaoAEqMrG//UGloKAy1f/gNWBUO0z8NqeRo+GW8SRxyRKpjij+sxoQ9Cb9RwVLtzYv1QGPFls10tL0n1AtakgYBfb+wPRNXo6mSPSEMkW+WgAtKbhvU7qOcdcRtoaN7OHle+DTamPHihJ16ke178Kypl5os2UF5gSIRhGjNOX2wAW9xTQAwi845Xrc6I8kIGt6zt3Rh4FrXuogUd0tI1Ji+KKBEwgAC/M5jQhdMA9Ley4yjfa0TRGCO6gSpZHeO163Sn61iKDkegp/OadyKuv/2hYmUwJPkYDRFLe+xIK22T5s6/HUaq5XswRSgkZ/5R9ZHTzggg8kuqeAFjZE8kTnyN0C8ZYABP2GDTd2zPjT76KPmfXvi3mLybtndfBFmfZXgd1fV1e3VD4dknJRmGiwMDGWub8sOTL3Ym2Nr8FHq5x1KWcDEwLV8DXIeVVVDACUnkplMRujfqi5Pjzi3y3X3n1dAGinnWzJuIOsJrj9rBpdAJHOwfM="
 jobs:
     include:
     - stage: Quality

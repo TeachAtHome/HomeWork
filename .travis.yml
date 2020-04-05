@@ -11,8 +11,8 @@ install:
 #     - npm run compile
 jobs:
     include:
-    - name: Test Job1
-      script: echo "Running job 1"
-    - name: Test Job2 
-      script: echo "Running job 2"
+    - name: Check Formating
+      script: npm run check
+    - name: Compile API 
+      script: npm run compile
   

@@ -6,14 +6,6 @@ before_install:
     - cd backend
 install:
     - npm ci
-stages:
-    - build
-    - test
-    - deploy
-jobs:
-    include:
-        - stage: build
-        script:
-            - npm run check
-        script:
-            - npm run compile
+script:
+    - npm run check
+    - npm run compile

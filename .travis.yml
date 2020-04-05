@@ -2,6 +2,8 @@ language: nodejs
 node_js:
     - lts/*
 cache: npm
+before_install:
+    - cd backend
 install:
     - npm ci
 script:

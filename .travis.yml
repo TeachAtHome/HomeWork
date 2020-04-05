@@ -1,7 +1,8 @@
 dist: trusty
-language: nodejs
-node_js:
-    - lts/*
+language: node_js
+# language: nodejs
+# node_js:
+#     - lts/*
 cache: npm
 before_install:
     - cd backend

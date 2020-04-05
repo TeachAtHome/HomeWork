@@ -1,0 +1,8 @@
+language: nodejs
+node_js:
+    - lts/*
+cache: npm
+install:
+    - npm ci
+script:
+    - npm run build

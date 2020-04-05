@@ -28,6 +28,5 @@ jobs:
     #   script: sonar-scanner
     - stage: Test
       name: Run API Tests
-      before_script: npm run compile
       script: npm test
   

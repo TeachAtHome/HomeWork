@@ -11,6 +11,7 @@ jobs:
     - stage: build
       name: Check Formating
       script: npm run check
+    - stage: build
       name: Compile API 
       script: npm run compile
     - stage: test

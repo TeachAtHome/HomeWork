@@ -8,13 +8,14 @@ install:
     - npm ci
 jobs:
     include:
-    - stage: build
+    - stage: Build
       name: Check Formating
       script: npm run check
-    - stage: build
-      name: Compile API 
-      script: npm run compile
-    - stage: test
+    # - stage: Build
+    #   name: Compile API 
+    #   script: npm run compile
+    - stage: Test
       name: Run Test 1
+      before_script: npm run compile
       script: echo "Ran Test 1"
   

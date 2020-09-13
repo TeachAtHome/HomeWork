@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --watch . -e ts,tsx --ignore '*Spec.ts*' --ignore '*Test.ts*' --exec 'npm run start:server'",
     "start:server": "ts-node --files --project tsconfig.json src/index.ts",
-    "lint": "tslint --project '.'",
+    "lint": "eslint --project '.'",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
@@ -36,10 +36,10 @@
     "@types/mongodb": "^3.5.22",
     "@types/node": "^10.17.26",
     "@types/uuid": "^7.0.4",
+    "eslint": "^7.9.0",
     "gts": "^2.0.2",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.2",
     "typescript": "~3.7.0"
   },
   "dependencies": {

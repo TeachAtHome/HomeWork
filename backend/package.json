@@ -9,7 +9,7 @@
     "lint": "tslint --project '.'",
     "check": "gts check",
     "clean": "gts clean",
-    "compile": "tsc -p .",
+    "build": "tsc -p .",
     "fix": "gts fix",
     "pretest": "npm run compile",
     "posttest": "npm run check"

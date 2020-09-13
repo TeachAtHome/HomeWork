@@ -4,15 +4,14 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon --watch . -e ts,tsx --ignore '*Spec.ts*' --ignore '*Test.ts*' --exec 'npm run start:server'",
-    "start:server": "ts-node --files --project tsconfig.json src/index.ts",
-    "lint": "tslint --project '.'",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
     "fix": "gts fix",
-    "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "lint": "tslint --project '.'",
+    "start": "nodemon --watch . -e ts,tsx --ignore '*Spec.ts*' --ignore '*Test.ts*' --exec 'npm run start:server'",
+    "start:server": "ts-node --files --project tsconfig.json src/index.ts",
+    "test": "echo \"Ran Tests\""
   },
   "repository": {
     "type": "git",

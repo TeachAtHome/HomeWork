@@ -10,7 +10,7 @@ export class MongoDBService implements DatabaseService {
     private databaseHost: string,
     private databasePort: number,
     private databaseName: string
-  ) { }
+  ) {}
 
   async open(): Promise<void> {
     try {
@@ -48,6 +48,7 @@ export class MongoDBService implements DatabaseService {
     collectionName: string,
     objectToInsert: Entity
   ): Promise<Entity> {
+    // tslint:disable-next-line:no-any
     const dbObject: any = MongoDBService.mapEntityToId(objectToInsert);
     const response = await this.database
       .collection(collectionName)
@@ -64,19 +65,21 @@ export class MongoDBService implements DatabaseService {
       query['_id'] = new ObjectID(query['id']);
       delete query['id'];
     }
-    return (await this.database
-      .collection(collectionName)
-      .find(query)
-      .toArray())
-      .map(MongoDBService.mapIdToEntity)
+    return (
+      await this.database
+        .collection(collectionName)
+        .find(query)
+        .toArray()
+    ).map(MongoDBService.mapIdToEntity);
   }
 
   async getAllCollectionEntries(collectionName: string): Promise<Entity[]> {
-    return (await this.database
-      .collection(collectionName)
-      .find()
-      .toArray())
-      .map(MongoDBService.mapIdToEntity)
+    return (
+      await this.database
+        .collection(collectionName)
+        .find()
+        .toArray()
+    ).map(MongoDBService.mapIdToEntity);
   }
 
   async deleteCollectionEntry(
@@ -107,23 +110,24 @@ export class MongoDBService implements DatabaseService {
         delete query['id'];
       }
       const dbObject = MongoDBService.mapEntityToId(objectToUpdate);
-      await this.database
-        .collection(collectionName)
-        .updateOne(query, dbObject);
+      await this.database.collection(collectionName).updateOne(query, dbObject);
     } catch (error) {
       console.error(error);
     }
   }
 
-  private static mapIdToEntity(dbObject: any): any{
+  // tslint:disable-next-line:no-any
+  private static mapIdToEntity(dbObject: any): any {
     dbObject['id'] = dbObject['_id'].toString();
     delete dbObject['_id'];
     return dbObject;
   }
 
-  private static mapEntityToId(entity: Entity): any{
+  // tslint:disable-next-line:no-any
+  private static mapEntityToId(entity: Entity): any {
+    // tslint:disable-next-line:no-any
     const dbObject: any = entity;
-    if(entity['id']) {
+    if (entity['id']) {
       dbObject['_id'] = new ObjectID(entity['id']);
     }
     delete dbObject['id'];

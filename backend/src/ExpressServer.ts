@@ -162,10 +162,7 @@ export class ExpressServer {
     );
 
     // Storage
-    server.put(
-      '/api/storage/upload',
-      this.storageEndpoints.uploadDocument
-    );
+    server.put('/api/storage/upload', this.storageEndpoints.uploadDocument);
     server.get(
       '/api/storage/download/:documentRefId',
       this.storageEndpoints.downloadDocument
@@ -174,9 +171,6 @@ export class ExpressServer {
       '/api/storage/document/:documentRefId',
       this.storageEndpoints.getDocument
     );
-    server.post(
-      '/api/storage/store',
-      this.storageEndpoints.storeDocument
-    );
+    server.post('/api/storage/store', this.storageEndpoints.storeDocument);
   }
 }
